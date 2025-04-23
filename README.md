@@ -53,12 +53,10 @@
 
 ## Map
 ### 1. Hasil Performa
-![image](https://github.com/user-attachments/assets/f9bb36d9-3007-468c-a577-2ca88457b108)
+
 ### 2. Analisis Hasil Performa
 ### 3. Screenshot Input Program
-![image](https://github.com/user-attachments/assets/cd83ee56-f67a-4de6-9a9c-86a8dcc92de1)
 ### 4. Screenshot Output Program
-![image](https://github.com/user-attachments/assets/1e023c2b-5b30-4072-928c-f7ed1c230e53)
 
 
 
