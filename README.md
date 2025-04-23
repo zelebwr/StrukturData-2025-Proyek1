@@ -17,7 +17,7 @@
 ![output array crop](https://github.com/user-attachments/assets/1f8de5b7-684c-48b6-8563-5d839332b798)
 ### 2. Analisis Hasil Performa
 | Function | Best Case | Worst Case | Average Case |
-|---|---|---|---|---|
+|---|---|---|---|
 | Data Retrieval | O(n) | O(n) | O(n) |
 | Dominance Check | O(1) | O(1) | O(1) |
 | Skyline Computation | O($n^2$) | O($n^2$) | O($n^2$) |
@@ -175,7 +175,7 @@ Struktur data Hash Table lebih cocok untuk dataset yang:
 4. Bisa untuk dataset yang baik **kecil** maupun **sangat besar**
 
 Untuk implementasi struktur data *Hash Table* sendiri untuk Skyline Query, bukanlah yang terbaik. Penggunaan struktur data ini **bukan ditujukan untuk implementasi Skyline Query**, alhasil operasi yang **tidak efisien**. Untuk spesifiknya, adalah disebabkan Hash Map yang menggunakan `Collision Handling` yang beragam dan membutuhkan `Unique Key` tersendiri, dan tergantung dari metode *Developer*, performa program dapat beragam juga.
-
+git 
 ### 3. Screenshot Input Program 
 ![image](https://github.com/user-attachments/assets/0988e22c-28e0-4cd6-958b-561388fd5315)
 
