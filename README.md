@@ -97,7 +97,11 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 
 ## Queue
 ### 1. Hasil Performa
+![Screenshot 2025-04-23 223447](https://github.com/user-attachments/assets/035cbc64-fe1e-42d8-a1fa-b004c226fc75)
+
 ### 2. Analisis Hasil Performa
+
+
 ### 3. Screenshot Input Program 
 ![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4)
 
