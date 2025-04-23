@@ -14,6 +14,7 @@
 
 ## Array
 ### 1. Hasil Performa
+![output array crop](https://github.com/user-attachments/assets/1f8de5b7-684c-48b6-8563-5d839332b798)
 ### 2. Analisis Hasil Performa
 ### 3. Screenshot Input Program 
 ![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4) 
@@ -44,7 +45,7 @@ for (s in data) {
 ```
 - Outer loop: O(n) → n = jumlah elemen
 - Inner loop: Dalam kasus terburuk, skyline bisa berisi hampir seluruh elemen → O(n)
-- Maka total kompleksitas: O(n^2)
+- Maka total kompleksitas: O(n²)
 
 Contoh:
 Untuk n = 1000, maka estimasi perbandingan bisa mencapai 1 juta operasi.
