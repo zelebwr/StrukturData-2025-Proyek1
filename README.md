@@ -42,6 +42,16 @@
 ![image](https://github.com/user-attachments/assets/3680192e-6af1-41af-a554-5eab0dd14173)
 
 ### 2. Analisis Hasil Performa
+Apabila dilihat dari keseluruhan program hashTable, Time Complexity dari program adalah sebagai berikut: 
+
+| Function | Best Case | Worst Case | Average Case | Explanation |
+| `hashFunction` | O(L) | O(L) | O(L) | `L` is defined as the length of the string that is being hashed upon. |
+| `add` | O(1) | O(n) | O(1) | While in adding a Node in a Hash Table can be O(1), due to the need of *Collision Handling* the worst case maybe O(n) due to the traversal process being done in buckets. Although, the best case scenario, where there are no collisions happening might make that into O(1). |
+| `contains` | O(1) | O(n) | O(1) | Alike with the `add()` function, this function also has the same scenarios. But, where the checker founds out that there is no hash index in the hash table. |
+| `remove` | O(1) | O(n) | O(1) | Alike with the `add()` function this function also has the same scenarios. But this can be cut short when the checker (still through traversing using `remove()` function) founds there is no such value in the Hash Set |
+| `printRatingSkyline` | O(n) | O(n) | O(n) | Due to the need of traversing using to check the Maximum Rating and Print Out (collect the product with such price), every case is O(n), where there happens two traversals. |
+| `printPriceSkyline` | O(n) | O(n) | O(n) | Alike `printRatingSkyline()` function, it also needs to do traversing twice but checks for Minimum Price instead, with all cases as O(n). |
+| `printTopSkyline` | O($n^2$) | O($n^2$) | O($n^2$) | Due to the need to check all of the items to see if the product is being dominated or dominating, it needs a `nested loop` process. So, all of the comparison will take O($n^2$) Time Complexity to be done. |
 
 
 ### 3. Screenshot Input Program 
@@ -58,7 +68,7 @@
 ### 4. Screenshot Output Program 
 
 ## Kesimpulan
-(ini pertanyaanya)
+
 3. Analisis hasil dari performa struktur data. Kaitkan dengan kompleksitas BigO Notation. 
 a. Manakah struktur data yang paling efisien dalam memproses skyline query?  
 b. Mengapa?
