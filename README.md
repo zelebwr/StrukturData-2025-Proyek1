@@ -120,6 +120,9 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 | **Highest/Lowest Check** | O(k)               | O(k)               | O(k)                | Pencarian linear untuk menemukan produk dengan rating tertinggi dan harga terendah, di mana `k` adalah ukuran skyline. |
 | **Print Output**         | O(k)               | O(k)               | O(k)                | Menampilkan `k` produk dari skyline.                             |
 | **Total Program**        | O(n)               | O(n log n)         | O(n²)               | Akumulasi: O(n) I/O + O(n log n) skyline + O(k) post-process. |
+- `n`: jumlah total produk dalam CSV.
+- `k`: jumlah produk dalam hasil skyline (k ≤ n).
+- `L`: panjang karakter dari string (untuk fungsi `isNumber()`).
 
 #### Kelebihan Queue
 - Menambah data (`push`) dan mengambil data (`pop`) sangat cepat.  
