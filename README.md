@@ -16,6 +16,14 @@
 ### 1. Hasil Performa
 ![output array crop](https://github.com/user-attachments/assets/1f8de5b7-684c-48b6-8563-5d839332b798)
 ### 2. Analisis Hasil Performa
+| Function | Best Case | Worst Case | Average Case |
+|---|---|---|---|---|
+| Data Retrieval | O(n) | O(n) | O(n) |
+| Dominance Check | O(1) | O(1) | O(1) |
+| Skyline Computation | O($n^2$) | O($n^2$) | O($n^2$) |
+
+Dapat dilihat dengan menggunakan struktur data array bahwa penggunaan dapat dibilang cukup sesuai untuk implementasi Skyline Query karena kecepatan data akses yang cepat dan penggunaan memory yang tidak terlalu banyak. Tetapi hal ini bergantung pada jumlah dari dataset. Jika dengan menggunakan dataset yang berjumlah sedikit, array merupakan pilihan data struktur terbaik. Tetapi jika diperuntukkan dataset yang besar, maka array akan menjadi lebih tidak efisien. Hal ini dikarenakan operasi array lebih sederhana dan menggunakan metode yang lebih *straightforward* dan melakukan traversal pada tiap item untuk mendapatkan skyline querynya.
+
 ### 3. Screenshot Input Program 
 ![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4) 
 ### 4. Screenshot Output Program 
