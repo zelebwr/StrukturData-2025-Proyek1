@@ -213,6 +213,35 @@ git
 
 
 ## Kesimpulan
-a. Manakah struktur data yang paling efisien dalam memproses skyline query?
 
-b. Mengapa?
+Jadi dari hasil program-program kami, struktur yang programnya tercepat adalah: 
+1. Stack
+2. Linked List 
+3. Map 
+
+Hal ini bisa terjadi disebabkan beberapa faktor, yaitu: 
+1. Performa perangkat dari masing-masing penguji program
+2. Besar Dataset
+3. Efisiensi program yang telah dibuat oleh para Developer program
+
+Secara teoritis, dengan dataset yang terkontrol dan operasi program yang sudah diefisienkan, hasil struktur data yang paling optimal seharusnya merupakan Array dan Map disebabkan kemampuan struktur data mereka yang melakukan proses akses data yang cepat, dengan kondisi tertentu yang harus ditemui. Tetapi untuk sekarang ini hasil kami berbeda dengan hasil tersebut. Hal ini dapat terjadi karena berbagai faktor seperti: 
+
+### 1. Kontrol Efisiensi yang berbeda-beda tiap program
+Dengan perbedaan akan kemampuan dan pemahaman tiap developer program, maka hasil dari efisiensi program sendiri berbeda-beda dan hasil dari ini dapat menyebabkan efisiensi programn juga beragam dengan standar yagn berbeda-beda. Dengan tanpa adanya kontrol kualitas/efisiensi program satu dengan program yang lainnya dapat menghasilkan hasil performa yang berbeda dan, mungkin, kurang akurat. 
+
+### 2. Implementasi Algoritma dan Library yang berbeda
+Ragam algoritma dan library yang ada dan sudah disediakan oleh C++ sendiri terdapat banyak dan berbeda-beda kegunaannya. Ada beberapa dari kami sendiri yang menggunakan library yang terkhususkan untuk suatu struktur data dan ada juga yang tanpa menggunakan library terkhususkan jika tidak harus. Ada juga yang menggunakan logika pemrograman/algoritma yang berbeda dengan satu sama lain, menyebabkan program satu sama lain memiliki perbedaan dalam efisiensi. Dengan menambahkan function `sort()` ada kemungkinan terjadi suatu proses di luar dugaan yang membuat efisiensi program meningkat. Ada juga kasus di mana suatu implementasi algoritma lain yang mungkin dapat menurunkan efisiensi program. 
+
+### 3. Fokus Manfaat Struktur Data yang bebeda
+Tiap struktur data sendiri memiliki fokus manfaat tersendiri. Mereka memiliki situasi yang dikhususkan untuk mereka sendiri agar dapat menyelesaikan suatu permasalahan dalam situasi tersebut dengan cara yang paling mudah dan paling efisien. Dengan begitu dengan fokus yang berbeda-beda, pastinya performa tiap struktur data dalam operasi skyline query sendiri dapat berbeda-beda. Tiap struktur data memiliki kegunaan masing-masing, dan memiliki dataset mereka sendiri dimana mereka mungkin lebih handal dibandingkan dengan yang lainnya. Seperti Array lebih efisien untuk mengolah dataset yang lebih kecil (karena memori yang diambil map berlebihan) dibandingkan dengan Map ketika melakukan skyline query, dan juga sebaliknya map lebih efisien dibandingkan array di saat melakukan skyline query dengan dataset yang lebih besar.
+
+### 4. Alur dan Jumlah Opersi yang berbeda
+Alur dan Jumlah Operasi yang berbeda merupakan salah satu faktor utama di saat membandingkan performa dari suatu program dengan program yang lainnya. Ketika alur dari program A dengan program B berbeda, terdapat sebuah proses redundansi sendiri-sendiri yang dapat mengurangi performa dari program. Seperti perbedaan dari alur, jumlah operasi yang dimiliki program sendiri juga berpengaruh pada performa dari program. Kembali lagi kepada efisiensi dari program, apabila program satu dengan program yang lainnya memiliki satu operasi yang sama tetapi satu dilakukan dengan cara yang berbeda, hal ini berpengaruh pada operasi. 
+
+Mungkin, selain dari faktor-fakotr di atas, mungkin dapat dilihat lebih detail melalui time complexity yang sudah dijelaskan sebelumnya pada penjelasana analisis data di atas. Apabila dilihat dari time complexity stack, linked list, dan map, mereka memiliki time complexity yang lebih baik dibandingkan yang lain. Dengan begitu performa mereka juga selayaknya lebih tinggi dibandingkan dengan performa program yang lainnya. 
+
+Alhasil, dengan pertimbangan semua faktor=faktor di atas dan hasil analisis kami semua untuk tiap struktur data, maka untuk struktur data paling efisen adalah: 
+1. Stack 
+2. Linked List
+3. Map
+

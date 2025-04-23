@@ -107,7 +107,6 @@ class hashSet {
         cout << "Value '" << label << "' not found." << endl; // Value not found
     }
     
-    
     void printHashSet() {
         for (size_t i = 0; i < bucketCount; i++) {
             cout << "Bucket " << i << ": ";
