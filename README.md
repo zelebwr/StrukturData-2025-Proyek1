@@ -100,15 +100,15 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 ![Screenshot 2025-04-23 223447](https://github.com/user-attachments/assets/035cbc64-fe1e-42d8-a1fa-b004c226fc75)
 
 ### 2. Analisis Hasil Performa
-| Fungsi                   | Best Case     | Worst Case      | Average Case    | Penjelasan |
-|--------------------------|---------------|-----------------|-----------------|------------|
-| isNumber                 | O(L)          | O(L)            | O(L)            | L adalah panjang string. Mengecek karakter per karakter untuk memastikan string hanya berisi angka. |
-| dominates                | O(1)          | O(1)            | O(1)            | Hanya membandingkan harga dan rating antara dua produk. |
-| Data Retrieval Loop      | O(n)          | O(n)            | O(n)            | Melalui file CSV baris per baris dan memasukkan data ke dalam queue. |
-| Skyline Calculation      | O(n²)         | O(n²)           | O(n²)           | Setiap produk dibandingkan dengan semua elemen dalam skyline, jadi kompleksitasnya O(n²) dalam kasus terburuk. |
-| Highest Rating Check     | O(n)          | O(n)            | O(n)            | Melakukan pencarian linear untuk menemukan produk dengan rating tertinggi di skyline. |
-| Lowest Price Check       | O(n)          | O(n)            | O(n)            | Melakukan pencarian linear untuk menemukan produk dengan harga terendah di skyline. |
-| Print Output             | O(n)          | O(n)            | O(n)            | Mencetak setiap produk dalam skyline, yang memerlukan O(n) waktu. |
+| Fungsi                         | Best Case           | Worst Case        | Average Case      | Penjelasan                                                      |
+|--------------------------------|---------------------|-------------------|-------------------|-----------------------------------------------------------------|
+| **isNumber()**                 | O(L)                | O(L)              | O(L)              | Mengecek apakah setiap karakter dalam string adalah angka. L adalah panjang string. |
+| **dominates()**                | O(1)                | O(1)              | O(1)              | Membandingkan dua nilai (harga dan rating) antara dua produk. |
+| **Data Retrieval Loop**        | O(n)                | O(n)              | O(n)              | Membaca file CSV dan memasukkan data ke dalam queue. Proses ini tergantung jumlah produk dalam file. |
+| **Skyline Calculation**        | O(n²)               | O(n²)             | O(n²)             | Untuk setiap produk, membandingkan dengan semua produk dalam skyline, sehingga menjadi O(n²) dalam kasus terburuk. |
+| **Highest Rating Check**       | O(k)                | O(k)              | O(k)              | Mencari produk dengan rating tertinggi dalam skyline, di mana k adalah jumlah produk dalam skyline. |
+| **Lowest Price Check**         | O(k)                | O(k)              | O(k)              | Mencari produk dengan harga terendah dalam skyline, di mana k adalah jumlah produk dalam skyline. |
+| **Print Output**               | O(k)                | O(k)              | O(k)              | Mencetak setiap produk dalam skyline, yang memerlukan waktu linear terhadap jumlah produk dalam skyline. |
 
 #### Kelebihan Queue
 - Menambah data (`push`) dan mengambil data (`pop`) sangat cepat.  
