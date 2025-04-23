@@ -3,6 +3,9 @@
 #include <fstream>
 #include <chrono>
 #include <climits>
+#include <algorithm> // for std::remove_if
+#include <cctype> // for std::isspace
+#include <cstdlib> // for std::stoi
 using namespace std;
 
 class Node {
@@ -269,8 +272,8 @@ int main() {
         string attr1_str = line.substr(second_comma + 1, third_comma - second_comma - 1);
         string attr2_str = line.substr(third_comma + 1);
 
-        // attr1_str.erase(remove_if(attr1_str.begin(), attr1_str.end(), ::isspace), attr1_str.end());
-        // attr2_str.erase(remove_if(attr2_str.begin(), attr2_str.end(), ::isspace), attr2_str.end());
+        attr1_str.erase(remove_if(attr1_str.begin(), attr1_str.end(), ::isspace), attr1_str.end());
+        attr2_str.erase(remove_if(attr2_str.begin(), attr2_str.end(), ::isspace), attr2_str.end());
 
         try {
             int id = stoi(id_str);
