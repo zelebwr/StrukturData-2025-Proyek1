@@ -51,26 +51,27 @@ std::map<std::string, Product> readCSV(const std::string& filename) {
     return products;
 }
 
-// Fungsi untuk melakukan skyline query pada produk menggunakan std::map
+// Fungsi untuk melakukan skyline query yang lebih efisien menggunakan std::map
 std::map<std::string, Product> skylineQueryMap(const std::map<std::string, Product>& products) {
+    std::vector<Product> sortedProducts;
+
+    // Salin semua produk dari map ke vector dan urutkan berdasarkan harga (ascending)
+    for (const auto& [id, product] : products) {
+        sortedProducts.push_back(product);
+    }
+
+    std::sort(sortedProducts.begin(), sortedProducts.end(), [](const Product& a, const Product& b) {
+        return a.price < b.price; // Urut berdasarkan harga naik
+    });
+
     std::map<std::string, Product> skyline;
+    double maxRatingSoFar = -1.0;
 
-    // Membandingkan tiap produk dengan produk lain untuk mengecek dominasi
-    for (const auto& [id1, p1] : products) {
-        bool dominated = false;
-        for (const auto& [id2, p2] : products) {
-            if (id1 == id2) continue;
-
-            // Cek apakah produk p1 didominasi oleh p2
-            if (p2.price <= p1.price && p2.rating >= p1.rating &&
-                (p2.price < p1.price || p2.rating > p1.rating)) {
-                dominated = true;
-                break;
-            }
-        }
-        // Jika tidak didominasi, masukkan ke dalam hasil skyline
-        if (!dominated) {
-            skyline[id1] = p1;
+    // Hanya simpan produk yang tidak didominasi (rating-nya lebih tinggi dari sebelumnya)
+    for (const auto& p : sortedProducts) {
+        if (p.rating > maxRatingSoFar) {
+            skyline[p.id] = p;
+            maxRatingSoFar = p.rating;
         }
     }
 
@@ -114,7 +115,7 @@ int main() {
         }
     }
 
-    // Urutkan hasil skyline berdasarkan rating (desc), lalu harga (asc) dengan mengubah struktur data std::map menjadi std::vector
+    // Urutkan hasil skyline berdasarkan rating (desc), lalu harga (asc)
     std::vector<std::pair<std::string, Product>> sortedProducts(bestProductMap.begin(), bestProductMap.end());
     std::sort(sortedProducts.begin(), sortedProducts.end(), [](const auto& a, const auto& b) {
         if (a.second.rating == b.second.rating)
