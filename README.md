@@ -111,17 +111,18 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 | Print Output             | O(n)          | O(n)            | O(n)            | Mencetak setiap produk dalam skyline, yang memerlukan O(n) waktu. |
 
 #### Kelebihan Queue
-- **Enqueue/Dequeue O(1)**: Menambah (`push`) dan menghapus (`pop`) elemen di ujung belakang/depan selalu dalam waktu konstan.  
-- **FIFO (First-In First-Out)**: Menjaga urutan data sesuai urutan masuk, cocok untuk pemrosesan batch atau streaming.  
-- **Implementasi Sederhana**: Cukup gunakan `std::queue` tanpa perlu kelola pointer manual.  
-- **Cache-Friendly**: Biasanya dibangun di atas `deque` atau `vector`, sehingga memory access relatif lebih berurutan.  
-- **Ringan**: Tidak ada overhead rebalancing seperti di struktur pohon atau heap.
+- Menambah data (`push`) dan mengambil data (`pop`) sangat cepat.  
+- Data diproses sesuai urutan datang (First-In, First-Out), jadi mudah dipahami.  
+- Pakai `std::queue` langsung bisa, tanpa harus ngatur pointer atau memori manual.  
+- Akses memori cukup berurutan, membantu kinerja.  
+- Struktur ringan, tidak ada penyeimbangan atau overhead tambahan.
 
 #### Kelemahan Queue
-- **Tidak Mendukung Akses Acak**: Hanya bisa melihat/front() dan back(), tidak bisa random-access ke elemen tengah.  
-- **Traversal Hanya dengan `pop()`**: Kalau mau iterasi penuh, harus terus-menerus `pop()`—data asli terbuang.  
-- **Kurang Fleksibel untuk Algoritma Kompleks**: Untuk skyline, logika dominasi perlu cek banyak elemen, tapi queue cuma memudahkan urutan, bukan pencarian cepat.  
-- **Tidak Efisien untuk Query Condition**: Misal mencari nilai tertentu atau median, queue tidak punya metode pencarian selain linear scan via pop.
+- Hanya bisa ambil data di depan atau belakang, tidak bisa langsung mengakses elemen di tengah.  
+- Untuk melihat semua data, harus terus mengeluarkan (`pop`), artinya data asli akan hilang.  
+- Kalau butuh cari data tertentu, harus cek satu per satu secara berurutan.  
+- Kurang pas untuk operasi yang membutuhkan akses acak atau query kompleks.
+ain linear scan via pop.
 
 ### 3. Screenshot Input Program 
 ![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4)
