@@ -138,7 +138,7 @@ ain linear scan via pop.
 ![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4)
 
 ### 4. Screenshot Output Program 
-<img width="470" alt="image" src="https://github.com/user-attachments/assets/f8b95034-a8f7-44ad-883a-8982cae27ede" />
+<img width="435" alt="image" src="https://github.com/user-attachments/assets/c84af424-010b-4deb-86c3-d6762eb21882" />
 
 ## Hash table
 ### 1. Hasil Performa
