@@ -27,9 +27,12 @@
 
 ## Stack
 ### 1. Hasil Performa
+![Image](https://github.com/user-attachments/assets/ea7e2a33-1022-467d-a9e2-bb6812a3e926)
 ### 2. Analisis Hasil Performa
 ### 3. Screenshot Input Program 
+![Image](https://github.com/user-attachments/assets/83293bf8-10c1-4a3d-aaba-f028dbcadaa3)
 ### 4. Screenshot Output Program 
+![Image](https://github.com/user-attachments/assets/9c64e70e-342d-466c-bfcd-18162644971a)
 
 ## Queue
 ### 1. Hasil Performa
