@@ -82,7 +82,7 @@ Apabila dilihat dari keseluruhan program hashTable, Time Complexity dari program
     
 -   **Operasi**:
     
-    -   Nested loop antar semua entri → membandingkan keseluruhan entri produk `p1` dengan semua `p2`. → secara *brute-force*.
+    -   Nested loop antar semua entri → membandingkan keseluruhan entri produk `p1` dengan semua `p2`. → secara *brute-force pairwise comparison*.
         
     -   Setiap produk dicek apakah **didominasi** oleh produk lain (berdasarkan harga dan rating).
         
