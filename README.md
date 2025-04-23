@@ -53,14 +53,14 @@
 
 ## Map
 ### 1. Hasil Performa
-![image](https://github.com/user-attachments/assets/f327da02-a43d-408d-a337-b72cae55ccb0)
+![image](https://github.com/user-attachments/assets/019a1173-ac22-435a-be29-eb8b7536f4f9)
 ### 2. Analisis Hasil Performa
 
 
 ### 3. Screenshot Input Program
-![image](https://github.com/user-attachments/assets/d2237982-75cd-4816-a78d-f8d8076152e4)
+![image](https://github.com/user-attachments/assets/baed9188-92da-497d-bc1e-aa623be8744a)
 ### 4. Screenshot Output Program
-![image](https://github.com/user-attachments/assets/e2d9df04-fc37-4641-9288-7533cda9d3e2)
+![image](https://github.com/user-attachments/assets/14cae447-c8aa-418e-94e8-7736c7ce8c80)
 
 
 ## Kesimpulan
