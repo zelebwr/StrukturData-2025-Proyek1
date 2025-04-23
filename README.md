@@ -1,5 +1,5 @@
 # StrukturData-2025-Proyek1
-
+---
 #### Kelompok 4
 
 | No. | Nama                                    | NRP         | Struktur Data |
@@ -11,7 +11,7 @@
 | 5   | Ahmad Rafi Fadhillah Dwiputra           | 5027241068  | Map            |
 | 6   | Mutiara Diva Jaladitha                  | 5027241083  | Linked List    |
 
-
+---
 ## Array
 ### 1. Hasil Performa
 ![output array crop](https://github.com/user-attachments/assets/1f8de5b7-684c-48b6-8563-5d839332b798)
@@ -29,6 +29,7 @@ Dapat dilihat dengan menggunakan struktur data array bahwa penggunaan dapat dibi
 ### 4. Screenshot Output Program 
 ![WhatsApp Image 2025-04-23 at 21 56 48_ff289abc](https://github.com/user-attachments/assets/59f6f5fa-ae2a-4f94-829c-0c62b8448dc0)
 
+---
 ## Linked List
 ### 1. Hasil Performa
 ![Screenshot 2025-04-23 210731](https://github.com/user-attachments/assets/e780c871-588b-4199-9fca-83f3b97a876e)
@@ -80,6 +81,7 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 ### 4. Screenshot Output Program 
 ![Screenshot 2025-04-23 210807](https://github.com/user-attachments/assets/a5f7ff3b-6a12-42a6-8e14-e65f307ad56a)
 
+---
 ## Stack
 ### 1. Hasil Performa
 ![Image](https://github.com/user-attachments/assets/ea7e2a33-1022-467d-a9e2-bb6812a3e926)
@@ -103,22 +105,24 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 ### 4. Screenshot Output Program 
 ![Image](https://github.com/user-attachments/assets/9c64e70e-342d-466c-bfcd-18162644971a)
 
+---
 ## Queue
 ### 1. Hasil Performa
-![Screenshot 2025-04-23 223447](https://github.com/user-attachments/assets/035cbc64-fe1e-42d8-a1fa-b004c226fc75)
+<img width="436" alt="image" src="https://github.com/user-attachments/assets/86674a02-bcfa-4304-8710-0177c8e9a3c2" />
 
 ### 2. Analisis Hasil Performa
-| **Fungsi**               | **Best Case** | **Average Case** | **Worst Case** | **Penjelasan**                                                    |
-|--------------------------|---------------|------------------|----------------|-------------------------------------------------------------------|
-| `isNumber()`             | O(L)          | O(L)             | O(L)           | Memeriksa tiap karakter dalam string (L = panjang string).        |
-| `dominates()`            | O(1)          | O(1)             | O(1)           | Membandingkan harga & rating dua produk.                          |
-| Data Retrieval Loop      | O(n)          | O(n)             | O(n)           | Membaca n baris CSV dan enqueue ke `queue`.                      |
-| Skyline Calculation      | O(n)          | O(n log n)       | O(n²)          | • **Best**: banyak produk tereliminasi awal → O(n)                |
-|                          |               |                  |                | • **Average**: skyline tumbuh ~O(log n) → O(n log n)              |
-|                          |               |                  |                | • **Worst**: semua produk bertahan → O(n²) |                      |
-| Highest/Lowest Check     | O(k)          | O(k)             | O(k)           | Pencarian linear di skyline (k = ukuran skyline).                |
-| Print Output             | O(k)          | O(k)             | O(k)           | Mencetak k produk skyline.                                        |
-| **Total Program**        | O(n)          | O(n log n)       | O(n²)          | Akumulasi: O(n) I/O + O(n log n) skyline + O(k) post-processing.  |
+| **Fungsi**               | **Best Case**      | **Average Case**   | **Worst Case**      | **Penjelasan**                                                    |
+|--------------------------|--------------------|--------------------|---------------------|-------------------------------------------------------------------|
+| `isNumber()`             | O(L)               | O(L)               | O(L)                | Memeriksa tiap karakter dalam string untuk memastikan apakah string tersebut berisi angka (L = panjang string). |
+| `dominates()`            | O(1)               | O(1)               | O(1)                | Membandingkan harga dan rating dua produk secara langsung.        |
+| **Data Retrieval Loop**  | O(n)               | O(n)               | O(n)                | Membaca `n` baris dari file CSV dan memasukkan produk ke dalam antrian (`queue`). |
+| **Skyline Calculation**  | O(n)               | O(n log n)         | O(n²)               | **Best**: Banyak produk tereliminasi awal → O(n). <br> **Average**: Skyline tumbuh sekitar logaritmik → O(n log n). <br> **Worst**: Semua produk bertahan → O(n²). |
+| **Highest/Lowest Check** | O(k)               | O(k)               | O(k)                | Pencarian linear untuk menemukan produk dengan rating tertinggi dan harga terendah, di mana `k` adalah ukuran skyline. |
+| **Print Output**         | O(k)               | O(k)               | O(k)                | Menampilkan `k` produk dari skyline.                             |
+| **Total Program**        | O(n)               | O(n log n)         | O(n²)               | Akumulasi: O(n) I/O + O(n log n) skyline + O(k) post-process. |
+- `n`: jumlah total produk dalam CSV.
+- `k`: jumlah produk dalam hasil skyline (k ≤ n).
+- `L`: panjang karakter dari string (untuk fungsi `isNumber()`).
 
 #### Kelebihan Queue
 - Menambah data (`push`) dan mengambil data (`pop`) sangat cepat.  
@@ -138,8 +142,9 @@ ain linear scan via pop.
 ![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4)
 
 ### 4. Screenshot Output Program 
-<img width="470" alt="image" src="https://github.com/user-attachments/assets/f8b95034-a8f7-44ad-883a-8982cae27ede" />
+<img width="436" alt="image" src="https://github.com/user-attachments/assets/de152151-1f3e-4a7a-acc0-cb8b4ac62022" />
 
+---
 ## Hash table
 ### 1. Hasil Performa
 ![image](https://github.com/user-attachments/assets/3680192e-6af1-41af-a554-5eab0dd14173)
@@ -182,36 +187,44 @@ git
 ### 4. Screenshot Output Program 
 ![image](https://github.com/user-attachments/assets/f7600e02-4821-4328-b012-1e6e5ede4c7a)
 
-
+---
 ## Map
 ### 1. Hasil Performa
-![image](https://github.com/user-attachments/assets/14cae447-c8aa-418e-94e8-7736c7ce8c80)
+![image](https://github.com/user-attachments/assets/4613daa3-8576-4981-a85c-f554564aaa9c)
+
 ### 2. Analisis Hasil Performa
 #### Analisis Performa *Skyline Query* dengan *Map*
+**Analisis Performa Skyline Query**
 
-##### Karakteristik:
-- Pembacaan data *.csv* menggunakan konsep operasi **insert, erase, find, access** dalam **notasi O(log n)**
--   Implementasi analisis *skyline query* terhadap data berbasis **Red-Black Tree** (balanced binary search tree).
+Analisis berikut merinci tahapan-tahapan utama dalam proses skyline query, termasuk struktur data yang digunakan dan kompleksitas waktu dan ruang (Big-O):
 
-##### Analisis logika *Skyline Query* (`skylineQueryMap`) dengan *Map*
--   **Struktur**: Hanya menggunakan `std::map`
-    
--   **Operasi**:
-    
-    -   Nested loop antar semua entri → membandingkan keseluruhan entri produk `p1` dengan semua `p2`. → secara *brute-force pairwise comparison*.
-        
-    -   Setiap produk dicek apakah **didominasi** oleh produk lain (berdasarkan harga dan rating).
-        
--   **Kompleksitas**:
-    
-    -   Outer loop (`n` produk) × Inner loop (`n` produk) → **O(n²)** 
+| Tahapan                        | Deskripsi                                                                | Struktur Data                         | Time Complexity | Space Complexity          |
+|-------------------------------|--------------------------------------------------------------------------|----------------------------------------|------------------|----------------------------|
+| 1. Membaca CSV (`readCSV`)    | Membaca dan parsing file, menyimpan ke `std::map`                        | `std::map<std::string, Product>`       | O(n)             | O(n)                       |
+| 2. Copy ke Vector             | Menyalin produk dari map ke vector                                       | `std::vector<Product>`                 | O(n)             | O(n)                       |
+| 3. Sort Berdasarkan Harga     | Mengurutkan produk dengan `std::sort` (harga naik)                       | `std::vector<Product>`                 | O(n log n)       | -                          |
+| 4. Skyline Filtering          | Linear scan untuk memilih produk dengan rating tertinggi sejauh ini      | `std::map<std::string, Product>`       | O(n)             | O(k) (hasil skyline)       |
+| 5. Pencarian Produk Terbaik   | Iterasi hasil skyline untuk cari rating tertinggi & harga termurah       | `std::map` atau `vector`               | O(k)             | -                          |
+| 6. Sort Hasil Skyline         | Mengurutkan hasil skyline berdasarkan rating (desc) dan harga (asc)      | `std::vector<pair>`                    | O(k log k)       | O(k)                       |
 
-### 3. Screenshot Input Program
-![image](https://github.com/user-attachments/assets/019a1173-ac22-435a-be29-eb8b7536f4f9)
-### 4. Screenshot Output Program
-![image](https://github.com/user-attachments/assets/baed9188-92da-497d-bc1e-aa623be8744a)
+**Total (Dominasi Kompleksitas Waktu)**
 
+- **Time Complexity Total**: `O(n log n)`
+- **Space Complexity Total**: `O(n)`
 
+---
+
+**Keterangan:**
+
+- `n` = jumlah total produk dalam dataset
+- `k` = jumlah hasil dari skyline query (biasanya jauh lebih kecil dari `n`)
+
+### 3. Screenshot Input Program 
+![image](https://github.com/user-attachments/assets/72296618-021c-4989-95f3-4c1ab90cd2e1)
+### 4. Screenshot Output Program 
+![image](https://github.com/user-attachments/assets/5b89d9dd-a83e-4b23-8bfb-82f92f948b9f)
+
+---
 ## Kesimpulan
 
 Jadi dari hasil program-program kami, struktur yang programnya tercepat adalah: 
