@@ -108,7 +108,7 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 ---
 ## Queue
 ### 1. Hasil Performa
-![Screenshot 2025-04-23 235211](https://github.com/user-attachments/assets/cc94feda-8a89-4119-a307-809d717f230f)
+<img width="436" alt="image" src="https://github.com/user-attachments/assets/86674a02-bcfa-4304-8710-0177c8e9a3c2" />
 
 ### 2. Analisis Hasil Performa
 | **Fungsi**               | **Best Case**      | **Average Case**   | **Worst Case**      | **Penjelasan**                                                    |
@@ -142,7 +142,7 @@ ain linear scan via pop.
 ![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4)
 
 ### 4. Screenshot Output Program 
-![Screenshot 2025-04-23 235211](https://github.com/user-attachments/assets/06f2ec33-8335-423f-a9e5-a27d961ffe01)
+<img width="436" alt="image" src="https://github.com/user-attachments/assets/de152151-1f3e-4a7a-acc0-cb8b4ac62022" />
 
 ---
 ## Hash table
