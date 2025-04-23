@@ -69,7 +69,7 @@ Apabila dilihat dari keseluruhan program hashTable, Time Complexity dari program
 
 ## Map
 ### 1. Hasil Performa
-![image](https://github.com/user-attachments/assets/019a1173-ac22-435a-be29-eb8b7536f4f9)
+![image](https://github.com/user-attachments/assets/14cae447-c8aa-418e-94e8-7736c7ce8c80)
 ### 2. Analisis Hasil Performa
 #### Analisis Performa *Skyline Query* dengan *Map*
 
@@ -91,9 +91,9 @@ Apabila dilihat dari keseluruhan program hashTable, Time Complexity dari program
     -   Outer loop (`n` produk) × Inner loop (`n` produk) → **O(n²)** 
 
 ### 3. Screenshot Input Program
-![image](https://github.com/user-attachments/assets/baed9188-92da-497d-bc1e-aa623be8744a)
+![image](https://github.com/user-attachments/assets/019a1173-ac22-435a-be29-eb8b7536f4f9)
 ### 4. Screenshot Output Program
-![image](https://github.com/user-attachments/assets/14cae447-c8aa-418e-94e8-7736c7ce8c80)
+![image](https://github.com/user-attachments/assets/baed9188-92da-497d-bc1e-aa623be8744a)
 
 
 ## Kesimpulan
