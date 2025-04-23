@@ -102,7 +102,7 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 ![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4)
 
 ### 4. Screenshot Output Program 
-![Screenshot 2025-04-23 185714](https://github.com/user-attachments/assets/34bbcd19-c471-4d6e-be05-1682680e8129)
+<img width="470" alt="image" src="https://github.com/user-attachments/assets/f8b95034-a8f7-44ad-883a-8982cae27ede" />
 
 ## Hash table
 ### 1. Hasil Performa
