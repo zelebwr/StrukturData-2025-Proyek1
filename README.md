@@ -100,7 +100,28 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 ![Screenshot 2025-04-23 223447](https://github.com/user-attachments/assets/035cbc64-fe1e-42d8-a1fa-b004c226fc75)
 
 ### 2. Analisis Hasil Performa
+| Fungsi                   | Best Case     | Worst Case      | Average Case    | Penjelasan |
+|--------------------------|---------------|-----------------|-----------------|------------|
+| isNumber                 | O(L)          | O(L)            | O(L)            | L adalah panjang string. Mengecek karakter per karakter untuk memastikan string hanya berisi angka. |
+| dominates                | O(1)          | O(1)            | O(1)            | Hanya membandingkan harga dan rating antara dua produk. |
+| Data Retrieval Loop      | O(n)          | O(n)            | O(n)            | Melalui file CSV baris per baris dan memasukkan data ke dalam queue. |
+| Skyline Calculation      | O(n²)         | O(n²)           | O(n²)           | Setiap produk dibandingkan dengan semua elemen dalam skyline, jadi kompleksitasnya O(n²) dalam kasus terburuk. |
+| Highest Rating Check     | O(n)          | O(n)            | O(n)            | Melakukan pencarian linear untuk menemukan produk dengan rating tertinggi di skyline. |
+| Lowest Price Check       | O(n)          | O(n)            | O(n)            | Melakukan pencarian linear untuk menemukan produk dengan harga terendah di skyline. |
+| Print Output             | O(n)          | O(n)            | O(n)            | Mencetak setiap produk dalam skyline, yang memerlukan O(n) waktu. |
 
+#### Kelebihan Queue
+- **Enqueue/Dequeue O(1)**: Menambah (`push`) dan menghapus (`pop`) elemen di ujung belakang/depan selalu dalam waktu konstan.  
+- **FIFO (First-In First-Out)**: Menjaga urutan data sesuai urutan masuk, cocok untuk pemrosesan batch atau streaming.  
+- **Implementasi Sederhana**: Cukup gunakan `std::queue` tanpa perlu kelola pointer manual.  
+- **Cache-Friendly**: Biasanya dibangun di atas `deque` atau `vector`, sehingga memory access relatif lebih berurutan.  
+- **Ringan**: Tidak ada overhead rebalancing seperti di struktur pohon atau heap.
+
+#### Kelemahan Queue
+- **Tidak Mendukung Akses Acak**: Hanya bisa melihat/front() dan back(), tidak bisa random-access ke elemen tengah.  
+- **Traversal Hanya dengan `pop()`**: Kalau mau iterasi penuh, harus terus-menerus `pop()`—data asli terbuang.  
+- **Kurang Fleksibel untuk Algoritma Kompleks**: Untuk skyline, logika dominasi perlu cek banyak elemen, tapi queue cuma memudahkan urutan, bukan pencarian cepat.  
+- **Tidak Efisien untuk Query Condition**: Misal mencari nilai tertentu atau median, queue tidak punya metode pencarian selain linear scan via pop.
 
 ### 3. Screenshot Input Program 
 ![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4)
