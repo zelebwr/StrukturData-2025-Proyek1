@@ -8,7 +8,7 @@ using namespace std;
 class Node {
     public:
     string label;
-    int price, rating; 
+    int id, price, rating; 
     Node* next;
     Node() : next(NULL), label(""), price(0), rating(0) {} // Constructor to initialize the node
 };
@@ -50,7 +50,7 @@ class hashSet {
     }
     
     // Function to add a value in the beginning of the bucket of the hash set
-    void add(const string& label, int attr1, int attr2) {
+    void add(const string& label, int id, int attr1, int attr2) {
         // check if the value already exists to avoid duplicates
         if (contains(label)) {
             cout << "Value '" << label << "' already exists." << endl;
@@ -62,6 +62,7 @@ class hashSet {
 
         // Create a new node and add it to the front of the list
         Node* newNode = new Node();
+        newNode->id = id; // Assign the value to the new node
         newNode->label = label; // Assign the value to the new node
         newNode->price = attr1; // Assign the value to the new node
         newNode->rating = attr2; // Assign the value to the new node
@@ -72,6 +73,8 @@ class hashSet {
     bool contains(const string& label) {
         unsigned int index = hashFunction(label);
         Node* current = buckets[index];
+        if (!current) return false; // If the bucket is empty, return false
+
         // traverse the linked list at the index
         while (current) {
             if (current->label == label) return true; // Found the value
@@ -106,11 +109,13 @@ class hashSet {
         for (size_t i = 0; i < bucketCount; i++) {
             cout << "Bucket " << i << ": ";
             Node* current = buckets[i];
-            int counter = 0;
+            int counter = 1;
             while (current) {
-                cout << counter << ". " << current->label << "," << current->price << "," << current->rating << " -> "; // Print the node's value
-                counter++; // Increment the counter for each node in the bucket
-                current = current->next; // Move to the next node
+                cout << counter << ". ID : " << current->price
+                     << " Product: " << current->label 
+                     << " | Price: " << current->price 
+                     << " | Rating: " << current->rating << endl;
+                    counter++;
             }
             cout << "NULL" << endl;
         }
@@ -140,7 +145,8 @@ class hashSet {
             Node* current = buckets[i];
             while (current) {
                 if (current->price == minPrice) { // Print only the nodes with the minimum price
-                    cout << counter << ". Product: " << current->label 
+                    cout << counter << ". ID : " << current->price
+                         << " Product: " << current->label 
                          << " | Price: " << current->price 
                          << " | Rating: " << current->rating << endl;
                     counter++; // Increment the counter for each node in the bucket
@@ -173,7 +179,8 @@ class hashSet {
             Node* current = buckets[i];
             while (current) {
                 if (current->rating == maxRating) { // Print only the nodes with the minimum rating
-                    cout << counter << ". Product: " << current->label 
+                    cout << counter << ". ID : " << current->price
+                         << " Product: " << current->label 
                          << " | Price: " << current->price 
                          << " | Rating: " << current->rating << endl;
                     counter++; // Increment the counter for each node in the bucket
@@ -213,8 +220,9 @@ class hashSet {
                 }
                 
                 if (!dominated) {
-                    cout << counter << ". Product: " << current->label
-                         << " | Price: " << current->price
+                    cout << counter << ". ID : " << current->price
+                         << " Product: " << current->label 
+                         << " | Price: " << current->price 
                          << " | Rating: " << current->rating << endl;
                     counter++; // Increment the counter for each node in the bucket
                 }
@@ -235,7 +243,7 @@ int main() {
     auto startDataRetrieval = chrono::high_resolution_clock::now(); // Start time for data retrieval
     // local variables
     hashSet skylineSet(1000); 
-    ifstream iFile("./1000_2_product.csv"); // Open the CSV file
+    ifstream iFile("./ind_1000_2_product.csv"); // Open the CSV file
         if (!iFile) { // check if the file opened successfully
             cout << "Error opening file" << endl;
             return 1;
@@ -256,6 +264,7 @@ int main() {
             continue;
         }
 
+        string id_str = line.substr(0, first_comma - 1);
         string label = line.substr(first_comma + 1, second_comma - first_comma - 1);
         string attr1_str = line.substr(second_comma + 1, third_comma - second_comma - 1);
         string attr2_str = line.substr(third_comma + 1);
@@ -264,9 +273,10 @@ int main() {
         // attr2_str.erase(remove_if(attr2_str.begin(), attr2_str.end(), ::isspace), attr2_str.end());
 
         try {
+            int id = stoi(id_str);
             int attr1 = stoi(attr1_str);
             int attr2 = stoi(attr2_str);
-            skylineSet.add(label, attr1, attr2);
+            skylineSet.add(label, id, attr1, attr2);
         } catch (...) {
             cout << "Error parsing line: " << line << endl;
         }
