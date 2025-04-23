@@ -85,17 +85,17 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 ![Image](https://github.com/user-attachments/assets/ea7e2a33-1022-467d-a9e2-bb6812a3e926)
 ### 2. Analisis Hasil Performa
 
-| Tahap / Fungsi                       | Deskripsi Operasi                                                                                         | Waktu (Time)     | Ruang (Space)                                 |
-|--------------------------------------|-----------------------------------------------------------------------------------------------------------|------------------|-----------------------------------------------|
-| **1. Data Retrieval**                | • Buka file CSV<br>• Baca baris demi baris (n baris)<br>• Parse `id`, `label`, `x`, `y` dengan `stringstream` | O(n)             | O(n) untuk menyimpan semua `Point`            |
-| **2. Sorting**                       | • `std::sort(points.begin(), points.end(), cmp)`<br>• Urutkan by `x ↑`, tiebreak by `y ↓`                   | O(n log n)       | O(log n) tambahan (stack rekursi sort)       |
-| **3. Skyline Computation (Stack)**   | • Iterasi satu-pass pada `points` (n elemen)<br>• Untuk tiap `p`:<br> – `pop` selagi `dominates(p, peek)`<br> – `skip` jika `dominates(peek, p)`<br> – `push(p)` ke stack | Amortized O(n)   | O(n) untuk node linked-list stack            |
-| **– dominates(a, b)**                | • Cek `(a.x <= b.x && a.y >= b.y) && (a.x < b.x || a.y > b.y)`                                              | O(1)             | O(1)                                          |
-| **– Stack::push/pop/peek**           | • Alokasi / dealokasi satu `Node`<br>• Akses pointer                                                          | O(1) each        | O(1) per elemen                              |
-| **4. Output Results**                | • Pop semua elemen stack (m = ukuran skyline)<br>• Cetak `id`, `label`, `x`, `y`                              | O(m)             | O(m) untuk `skyline` vector                  |
-| **5. Memory Measurement**            | • Panggilan API OS (`GetProcessMemoryInfo`)                                                                  | O(1)             | O(1)                                          |
-| **TOTAL TIME**                       | Dominasi oleh tahap **sorting** + **skyline pass**                                                          | O(n log n)       | —                                             |
-| **TOTAL SPACE**                      | `points` vector + linked-list stack + overhead CSV buffer                                                   | O(n)             | —                                             |
+| Langkah                  | Deskripsi Singkat                         | Time Complexity | Space Complexity |
+|--------------------------|---------------------------------------------|-----------------|------------------|
+| **1. Load Data**         | Buka & parse CSV (n baris)                  | O(n)            | O(n)             |
+| **2. Sorting**           | `std::sort` by price ↑, tie → rating ↓      | O(n log n)      | O(log n)         |
+| **3. Skyline Calc.**     | One-pass stack-based skyline                | O(n)            | O(n)             |
+| **4. Output Results**    | Cetak m titik skyline                       | O(m)            | O(m)             |
+| **5. Memory Measure**    | Panggilan API OS untuk working set size     | O(1)            | O(1)             |
+| **Total**                | Dominasi oleh sorting + skyline pass        | O(n log n)      | O(n)             |
+
+- **n** = jumlah entri (mis. 1000)  
+- **m** = jumlah titik skyline (≤ n)  
 
 
 ### 3. Screenshot Input Program 
@@ -108,7 +108,29 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 ![Screenshot 2025-04-23 223447](https://github.com/user-attachments/assets/035cbc64-fe1e-42d8-a1fa-b004c226fc75)
 
 ### 2. Analisis Hasil Performa
+| Fungsi                         | Best Case           | Worst Case        | Average Case      | Penjelasan                                                      |
+|--------------------------------|---------------------|-------------------|-------------------|-----------------------------------------------------------------|
+| **isNumber()**                 | O(L)                | O(L)              | O(L)              | Mengecek apakah setiap karakter dalam string adalah angka. L adalah panjang string. |
+| **dominates()**                | O(1)                | O(1)              | O(1)              | Membandingkan dua nilai (harga dan rating) antara dua produk. |
+| **Data Retrieval Loop**        | O(n)                | O(n)              | O(n)              | Membaca file CSV dan memasukkan data ke dalam queue. Proses ini tergantung jumlah produk dalam file. |
+| **Skyline Calculation**        | O(n²)               | O(n²)             | O(n²)             | Untuk setiap produk, membandingkan dengan semua produk dalam skyline, sehingga menjadi O(n²) dalam kasus terburuk. |
+| **Highest Rating Check**       | O(k)                | O(k)              | O(k)              | Mencari produk dengan rating tertinggi dalam skyline, di mana k adalah jumlah produk dalam skyline. |
+| **Lowest Price Check**         | O(k)                | O(k)              | O(k)              | Mencari produk dengan harga terendah dalam skyline, di mana k adalah jumlah produk dalam skyline. |
+| **Print Output**               | O(k)                | O(k)              | O(k)              | Mencetak setiap produk dalam skyline, yang memerlukan waktu linear terhadap jumlah produk dalam skyline. |
 
+#### Kelebihan Queue
+- Menambah data (`push`) dan mengambil data (`pop`) sangat cepat.  
+- Data diproses sesuai urutan datang (First-In, First-Out), jadi mudah dipahami.  
+- Pakai `std::queue` langsung bisa, tanpa harus ngatur pointer atau memori manual.  
+- Akses memori cukup berurutan, membantu kinerja.  
+- Struktur ringan, tidak ada penyeimbangan atau overhead tambahan.
+
+#### Kelemahan Queue
+- Hanya bisa ambil data di depan atau belakang, tidak bisa langsung mengakses elemen di tengah.  
+- Untuk melihat semua data, harus terus mengeluarkan (`pop`), artinya data asli akan hilang.  
+- Kalau butuh cari data tertentu, harus cek satu per satu secara berurutan.  
+- Kurang pas untuk operasi yang membutuhkan akses acak atau query kompleks.
+ain linear scan via pop.
 
 ### 3. Screenshot Input Program 
 ![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4)
