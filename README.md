@@ -187,7 +187,7 @@ git
 
 ### 2. Analisis Hasil Performa
 #### Analisis Performa *Skyline Query* dengan *Map*
-#### Analisis Performa Skyline Query
+**Analisis Performa Skyline Query**
 
 Analisis berikut merinci tahapan-tahapan utama dalam proses skyline query, termasuk struktur data yang digunakan dan kompleksitas waktu dan ruang (Big-O):
 
@@ -200,7 +200,7 @@ Analisis berikut merinci tahapan-tahapan utama dalam proses skyline query, terma
 | 5. Pencarian Produk Terbaik   | Iterasi hasil skyline untuk cari rating tertinggi & harga termurah       | `std::map` atau `vector`               | O(k)             | -                          |
 | 6. Sort Hasil Skyline         | Mengurutkan hasil skyline berdasarkan rating (desc) dan harga (asc)      | `std::vector<pair>`                    | O(k log k)       | O(k)                       |
 
-#### Total (Dominasi Kompleksitas Waktu)
+**Total (Dominasi Kompleksitas Waktu)**
 
 - **Time Complexity Total**: `O(n log n)`
 - **Space Complexity Total**: `O(n)`
@@ -211,6 +211,12 @@ Analisis berikut merinci tahapan-tahapan utama dalam proses skyline query, terma
 
 - `n` = jumlah total produk dalam dataset
 - `k` = jumlah hasil dari skyline query (biasanya jauh lebih kecil dari `n`)
+
+### 3. Screenshot Input Program 
+![image](https://github.com/user-attachments/assets/72296618-021c-4989-95f3-4c1ab90cd2e1)
+### 4. Screenshot Output Program 
+![image](https://github.com/user-attachments/assets/5b89d9dd-a83e-4b23-8bfb-82f92f948b9f)
+
 
 ## Kesimpulan
 a. Manakah struktur data yang paling efisien dalam memproses skyline query?
