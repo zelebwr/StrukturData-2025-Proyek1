@@ -1,12 +1,12 @@
 # StrukturData-2025-Proyek1
 
 #### Kelompok 4
-1. Salomo (5027221063)
-2. Revalina Erica Permatasari (5027241007)
-3. Jonathan Zelig Sutopo (5027241047)
-4. Dina Rahmadani (5027241065)
-5. Ahmad Rafi Fadhillah Dwiputra (5027241068)
-6. Mutiara Diva Jaladitha (5027241083)
+1. Salomo (5027221063) - Stack
+2. Revalina Erica Permatasari (5027241007) - Queue
+3. Jonathan Zelig Sutopo (5027241047) - Hash Table
+4. Dina Rahmadani (5027241065) - Array
+5. Ahmad Rafi Fadhillah Dwiputra (5027241068) - Map
+6. Mutiara Diva Jaladitha (5027241083) - Linked List
 
 ## Array
 ### 1. Hasil Performa
@@ -30,7 +30,10 @@
 ### 1. Hasil Performa
 ### 2. Analisis Hasil Performa
 ### 3. Screenshot Input Program 
+![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4)
+
 ### 4. Screenshot Output Program 
+![Screenshot 2025-04-23 185714](https://github.com/user-attachments/assets/34bbcd19-c471-4d6e-be05-1682680e8129)
 
 ## Hash table
 ### 1. Hasil Performa
