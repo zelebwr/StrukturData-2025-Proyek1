@@ -189,30 +189,30 @@ git
 
 ### 2. Analisis Hasil Performa
 #### Analisis Performa *Skyline Query* dengan *Map*
+#### Analisis Performa Skyline Query
 
-##### Karakteristik:
-- Pembacaan data *.csv* menggunakan konsep operasi **insert, erase, find, access** dalam **notasi O(log n)**
--   Implementasi analisis *skyline query* terhadap data berbasis **Red-Black Tree** (balanced binary search tree).
+Analisis berikut merinci tahapan-tahapan utama dalam proses skyline query, termasuk struktur data yang digunakan dan kompleksitas waktu dan ruang (Big-O):
 
-##### Analisis logika *Skyline Query* (`skylineQueryMap`) dengan *Map*
--   **Struktur**: Hanya menggunakan `std::map`
-    
--   **Operasi**:
-    
-    -   Nested loop antar semua entri → membandingkan keseluruhan entri produk `p1` dengan semua `p2`. → secara *brute-force pairwise comparison*.
-        
-    -   Setiap produk dicek apakah **didominasi** oleh produk lain (berdasarkan harga dan rating).
-        
--   **Kompleksitas**:
-    
-    -   Outer loop (`n` produk) × Inner loop (`n` produk) → **O(n²)** 
+| Tahapan                        | Deskripsi                                                                | Struktur Data                         | Time Complexity | Space Complexity          |
+|-------------------------------|--------------------------------------------------------------------------|----------------------------------------|------------------|----------------------------|
+| 1. Membaca CSV (`readCSV`)    | Membaca dan parsing file, menyimpan ke `std::map`                        | `std::map<std::string, Product>`       | O(n)             | O(n)                       |
+| 2. Copy ke Vector             | Menyalin produk dari map ke vector                                       | `std::vector<Product>`                 | O(n)             | O(n)                       |
+| 3. Sort Berdasarkan Harga     | Mengurutkan produk dengan `std::sort` (harga naik)                       | `std::vector<Product>`                 | O(n log n)       | -                          |
+| 4. Skyline Filtering          | Linear scan untuk memilih produk dengan rating tertinggi sejauh ini      | `std::map<std::string, Product>`       | O(n)             | O(k) (hasil skyline)       |
+| 5. Pencarian Produk Terbaik   | Iterasi hasil skyline untuk cari rating tertinggi & harga termurah       | `std::map` atau `vector`               | O(k)             | -                          |
+| 6. Sort Hasil Skyline         | Mengurutkan hasil skyline berdasarkan rating (desc) dan harga (asc)      | `std::vector<pair>`                    | O(k log k)       | O(k)                       |
 
-### 3. Screenshot Input Program
-![image](https://github.com/user-attachments/assets/261878ae-a1da-4963-88b6-de465ff59e55)
+#### Total (Dominasi Kompleksitas Waktu)
 
-### 4. Screenshot Output Program
-![image](https://github.com/user-attachments/assets/a2092a0c-7487-438e-ba2c-57535225c396)
+- **Time Complexity Total**: `O(n log n)`
+- **Space Complexity Total**: `O(n)`
 
+---
+
+**Keterangan:**
+
+- `n` = jumlah total produk dalam dataset
+- `k` = jumlah hasil dari skyline query (biasanya jauh lebih kecil dari `n`)
 
 ## Kesimpulan
 a. Manakah struktur data yang paling efisien dalam memproses skyline query?
