@@ -18,12 +18,54 @@
 ### 3. Screenshot Input Program 
 ![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4) 
 ### 4. Screenshot Output Program 
-<img width="371" alt="image" src="https://github.com/user-attachments/assets/b44b5ee6-8200-43dd-ba5c-0e31d9387176" />
+![WhatsApp Image 2025-04-23 at 21 56 48_ff289abc](https://github.com/user-attachments/assets/59f6f5fa-ae2a-4f94-829c-0c62b8448dc0)
 
 ## Linked List
 ### 1. Hasil Performa
 ![Screenshot 2025-04-23 210731](https://github.com/user-attachments/assets/e780c871-588b-4199-9fca-83f3b97a876e)
 ### 2. Analisis Hasil Performa
+#### a. Apakah linked list efisien dalam memproses Skyline Query?
+Tidak terlalu efisien untuk kasus data besar, tapi masih layak digunakan untuk data kecil–menengah (seperti 1000 baris).
+
+#### b. Mengapa? (Penjelasan dan Analisis Big-O)
+Struktur Linked List
+- Tidak mendukung akses acak langsung (seperti array atau vector).
+- Untuk mencari elemen tertentu, traversal harus dilakukan dari awal ke akhir.
+- Operasi seperti pengecekan dominasi antar elemen membutuhkan loop bersarang.
+
+#### Kompleksitas Algoritma Skyline Query dengan Linked List
+```
+for (s in data) {
+    for (sk in skyline) {
+        if (dominates(sk, s)) ...
+    }
+    // menambahkan ke skyline baru, jika tidak didominasi
+}
+```
+- Outer loop: O(n) → n = jumlah elemen
+- Inner loop: Dalam kasus terburuk, skyline bisa berisi hampir seluruh elemen → O(n)
+- Maka total kompleksitas: O(n^2)
+
+Contoh:
+Untuk n = 1000, maka estimasi perbandingan bisa mencapai 1 juta operasi.
+Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek dari n → kompleksitas rata-rata lebih rendah, tapi tetap quadratic worst-case.
+
+#### Efisiensi Operasi di Linked List
+| Operasi             | Kompleksitas             | Keterangan                      |
+|---------------------|--------------------------|---------------------------------|
+| Traversal           | O(n)                     | Perlu iterasi node per node     |
+| Penambahan di akhir | O(n) tanpa tail, O(1) dengan tail |                               |
+| Pencarian / dominasi| O(n)                     | Tidak bisa akses acak           |
+| Penghapusan semua   | O(n)                     | Satu loop sudah cukup           |
+
+#### Kelemahan Linked List untuk Skyline
+- Traversal lambat – butuh waktu untuk menjelajahi semua node.
+- Tidak cache-friendly – pointer menyebar di memori.
+- Tidak cocok untuk data besar – karena `O(n²)` bisa jadi sangat lambat
+#### Kelebihan (untuk dataset kecil–menengah)
+- Mudah diimplementasikan.
+- Penggunaan memori efisien (tergantung ukuran elemen).
+- Cocok untuk eksperimen awal, tugas kecil, atau dataset terbatas (< 10.000).
 ### 3. Screenshot Input Program 
 ![Screenshot 2025-04-23 210947](https://github.com/user-attachments/assets/8e0e9569-8745-4c1a-9734-cb634ecc430b)
 ### 4. Screenshot Output Program 
