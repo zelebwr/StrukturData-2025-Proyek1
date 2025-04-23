@@ -113,9 +113,9 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 | `isNumber()`             | O(L)          | O(L)             | O(L)           | Memeriksa tiap karakter dalam string (L = panjang string).        |
 | `dominates()`            | O(1)          | O(1)             | O(1)           | Membandingkan harga & rating dua produk.                          |
 | Data Retrieval Loop      | O(n)          | O(n)             | O(n)           | Membaca n baris CSV dan enqueue ke `queue`.                      |
-| Skyline Calculation      | O(n)          | O(n log n)       | O(n²)          | • **Best**: banyak produk tereliminasi awal → O(n)  
-• **Average**: skyline tumbuh ~O(log n) → O(n log n)  
-• **Worst**: semua produk bertahan → O(n²) |
+| Skyline Calculation      | O(n)          | O(n log n)       | O(n²)          | • **Best**: banyak produk tereliminasi awal → O(n)                |
+|                          |               |                  |                | • **Average**: skyline tumbuh ~O(log n) → O(n log n)              |
+|                          |               |                  |                | • **Worst**: semua produk bertahan → O(n²) |                      |
 | Highest/Lowest Check     | O(k)          | O(k)             | O(k)           | Pencarian linear di skyline (k = ukuran skyline).                |
 | Print Output             | O(k)          | O(k)             | O(k)           | Mencetak k produk skyline.                                        |
 | **Total Program**        | O(n)          | O(n log n)       | O(n²)          | Akumulasi: O(n) I/O + O(n log n) skyline + O(k) post-processing.  |
