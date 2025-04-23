@@ -14,6 +14,7 @@
 
 ## Array
 ### 1. Hasil Performa
+![output array crop](https://github.com/user-attachments/assets/1f8de5b7-684c-48b6-8563-5d839332b798)
 ### 2. Analisis Hasil Performa
 ### 3. Screenshot Input Program 
 ![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4) 
@@ -44,7 +45,7 @@ for (s in data) {
 ```
 - Outer loop: O(n) → n = jumlah elemen
 - Inner loop: Dalam kasus terburuk, skyline bisa berisi hampir seluruh elemen → O(n)
-- Maka total kompleksitas: O(n^2)
+- Maka total kompleksitas: O(n²)
 
 Contoh:
 Untuk n = 1000, maka estimasi perbandingan bisa mencapai 1 juta operasi.
@@ -75,6 +76,20 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 ### 1. Hasil Performa
 ![Image](https://github.com/user-attachments/assets/ea7e2a33-1022-467d-a9e2-bb6812a3e926)
 ### 2. Analisis Hasil Performa
+
+| Tahap / Fungsi                       | Deskripsi Operasi                                                                                         | Waktu (Time)     | Ruang (Space)                                 |
+|--------------------------------------|-----------------------------------------------------------------------------------------------------------|------------------|-----------------------------------------------|
+| **1. Data Retrieval**                | • Buka file CSV<br>• Baca baris demi baris (n baris)<br>• Parse `id`, `label`, `x`, `y` dengan `stringstream` | O(n)             | O(n) untuk menyimpan semua `Point`            |
+| **2. Sorting**                       | • `std::sort(points.begin(), points.end(), cmp)`<br>• Urutkan by `x ↑`, tiebreak by `y ↓`                   | O(n log n)       | O(log n) tambahan (stack rekursi sort)       |
+| **3. Skyline Computation (Stack)**   | • Iterasi satu-pass pada `points` (n elemen)<br>• Untuk tiap `p`:<br> – `pop` selagi `dominates(p, peek)`<br> – `skip` jika `dominates(peek, p)`<br> – `push(p)` ke stack | Amortized O(n)   | O(n) untuk node linked-list stack            |
+| **– dominates(a, b)**                | • Cek `(a.x <= b.x && a.y >= b.y) && (a.x < b.x || a.y > b.y)`                                              | O(1)             | O(1)                                          |
+| **– Stack::push/pop/peek**           | • Alokasi / dealokasi satu `Node`<br>• Akses pointer                                                          | O(1) each        | O(1) per elemen                              |
+| **4. Output Results**                | • Pop semua elemen stack (m = ukuran skyline)<br>• Cetak `id`, `label`, `x`, `y`                              | O(m)             | O(m) untuk `skyline` vector                  |
+| **5. Memory Measurement**            | • Panggilan API OS (`GetProcessMemoryInfo`)                                                                  | O(1)             | O(1)                                          |
+| **TOTAL TIME**                       | Dominasi oleh tahap **sorting** + **skyline pass**                                                          | O(n log n)       | —                                             |
+| **TOTAL SPACE**                      | `points` vector + linked-list stack + overhead CSV buffer                                                   | O(n)             | —                                             |
+
+
 ### 3. Screenshot Input Program 
 ![Image](https://github.com/user-attachments/assets/83293bf8-10c1-4a3d-aaba-f028dbcadaa3)
 ### 4. Screenshot Output Program 
@@ -82,12 +97,16 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 
 ## Queue
 ### 1. Hasil Performa
+![Screenshot 2025-04-23 223447](https://github.com/user-attachments/assets/035cbc64-fe1e-42d8-a1fa-b004c226fc75)
+
 ### 2. Analisis Hasil Performa
+
+
 ### 3. Screenshot Input Program 
 ![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4)
 
 ### 4. Screenshot Output Program 
-![Screenshot 2025-04-23 185714](https://github.com/user-attachments/assets/34bbcd19-c471-4d6e-be05-1682680e8129)
+<img width="470" alt="image" src="https://github.com/user-attachments/assets/f8b95034-a8f7-44ad-883a-8982cae27ede" />
 
 ## Hash table
 ### 1. Hasil Performa
