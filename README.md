@@ -106,6 +106,24 @@ Apabila dilihat dari keseluruhan program hashTable, Time Complexity dari program
 | `printPriceSkyline` | O(n) | O(n) | O(n) | Alike `printRatingSkyline()` function, it also needs to do traversing twice but checks for Minimum Price instead, with all cases as O(n). |
 | `printTopSkyline` | O($n^2$) | O($n^2$) | O($n^2$) | Due to the need to check all of the items to see if the product is being dominated or dominating, it needs a `nested loop` process. So, all of the comparison will take O($n^2$) Time Complexity to be done. |
 
+Kelebihan menggunakan Hash Table: 
+1. Operasi akses data yang sangat cepat, karena berdasarkan suatu `key`.
+2. Operasi memasukkan, meng**ha**pus, dan pencarian data yang cepat.
+3. Ditujukan untuk **alokasi data secara dinamis**. 
+
+Kekurangan menggunakan Hash Table:
+1. **Memerlukan** `Collision Handling`, dan hal ini dilakukan melalui proses yang lebih rumit lagi, seperti melibatkan struktur data yang lain.
+2. **Tidak mengurutkan data** di dalam struktur data. 
+3. Bisa terjadi **penghabisan memori yang berlebihan**.
+4. **Tidak cocok** untuk operasi **`real-time`**.
+
+Struktur data Hash Table lebih cocok untuk dataset yang: 
+1. **Memiliki `Unique Key`**, sebagai identifiers tersendiri.
+2. **Tidak** membutuhkan akses yang **diurutkan**. 
+3. **Frekuensi akses data** yang **tinggi**.
+4. Bisa untuk dataset yang baik **kecil** maupun **sangat besar**
+
+Untuk implementasi struktur data *Hash Table* sendiri untuk Skyline Query, bukanlah yang terbaik. Penggunaan struktur data ini **bukan ditujukan untuk implementasi Skyline Query**, alhasil operasi yang **tidak efisien**.
 
 ### 3. Screenshot Input Program 
 ![image](https://github.com/user-attachments/assets/0988e22c-28e0-4cd6-958b-561388fd5315)
