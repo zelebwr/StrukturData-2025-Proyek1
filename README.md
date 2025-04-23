@@ -98,7 +98,6 @@ Apabila dilihat dari keseluruhan program hashTable, Time Complexity dari program
 
 
 ## Kesimpulan
+a. Manakah struktur data yang paling efisien dalam memproses skyline query?
 
-3. Analisis hasil dari performa struktur data. Kaitkan dengan kompleksitas BigO Notation. 
-a. Manakah struktur data yang paling efisien dalam memproses skyline query?  
 b. Mengapa?
