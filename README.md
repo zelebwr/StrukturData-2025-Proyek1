@@ -39,9 +39,17 @@
 
 ## Hash table
 ### 1. Hasil Performa
+![image](https://github.com/user-attachments/assets/3680192e-6af1-41af-a554-5eab0dd14173)
+
 ### 2. Analisis Hasil Performa
+
+
 ### 3. Screenshot Input Program 
+![image](https://github.com/user-attachments/assets/0988e22c-28e0-4cd6-958b-561388fd5315)
+
 ### 4. Screenshot Output Program 
+![image](https://github.com/user-attachments/assets/f7600e02-4821-4328-b012-1e6e5ede4c7a)
+
 
 ## Map
 ### 1. Hasil Performa
