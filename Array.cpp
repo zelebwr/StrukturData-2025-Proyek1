@@ -1,100 +1,108 @@
 #include <iostream>
+#include <vector>
 #include <fstream>
 #include <sstream>
-#include <vector>
-#include <ctime>
-using namespace std;
+#include <chrono>
+#include <iomanip>
 
-struct Shirt {
+using namespace std;
+using namespace chrono;
+
+struct Product {
+    int id;
     int price;
-    float review;
+    int rating;
 };
 
-// Fungsi untuk menentukan dominasi
-bool dominates(Shirt a, Shirt b) {
-    return (a.price <= b.price && a.review >= b.review) &&
-           (a.price < b.price || a.review > b.review);
-}
-
-// Fungsi utama Skyline Query
-vector<Shirt> skylineQuery(const vector<Shirt>& shirts) {
-    vector<Shirt> skyline;
-    for (const auto& s : shirts) {
-        bool isDominated = false;
-        for (const auto& sk : skyline) {
-            if (dominates(sk, s)) {
-                isDominated = true;
-                break;
-            }
-        }
-        if (!isDominated) {
-            vector<Shirt> newSkyline;
-            for (const auto& sk : skyline) {
-                if (!dominates(s, sk)) {
-                    newSkyline.push_back(sk);
-                }
-            }
-            newSkyline.push_back(s);
-            skyline = newSkyline;
-        }
-    }
-    return skyline;
-}
-
-vector<Shirt> readCSV(const string& filename) {
-    vector<Shirt> shirts;
+vector<Product> readProductsFromCSV(const string &filename) {
+    vector<Product> products;
     ifstream file(filename);
-    string line;
+    string line, cell;
 
     if (!file.is_open()) {
-        cerr << "Gagal membuka file: " << filename << endl;
-        return shirts;
+        cerr << "Error: Could not open file " << filename << endl;
+        return products;
     }
 
     getline(file, line); // Skip header
 
     while (getline(file, line)) {
         stringstream ss(line);
-        string idStr, nameStr, attr1Str, attr2Str;
+        string label;
+        int id, price, rating;
 
-        getline(ss, idStr, ',');    // ID
-        getline(ss, nameStr, ',');  // Nama produk (product-1, etc.)
-        getline(ss, attr1Str, ','); // Harga
-        getline(ss, attr2Str, ','); // Review
+        getline(ss, cell, ','); id = stoi(cell);
+        getline(ss, label, ','); // skip label
+        getline(ss, cell, ','); price = stoi(cell);
+        getline(ss, cell, ','); rating = stoi(cell);
 
-        if (attr1Str.empty() || attr2Str.empty()) continue;
+        products.push_back({id, price, rating});
+    }
 
-        try {
-            int attr1 = stoi(attr1Str);     // Harga
-            float attr2 = stof(attr2Str);   // Review
-            shirts.push_back({attr1, attr2});
-        } catch (const invalid_argument& e) {
-            cerr << "Baris tidak valid, dilewati: " << line << endl;
-            continue;
+    return products;
+}
+
+bool dominates(const Product &a, const Product &b) {
+    return (a.price <= b.price && a.rating >= b.rating) &&
+           (a.price < b.price || a.rating > b.rating);
+}
+
+vector<Product> computeSkyline(const vector<Product> &products) {
+    vector<Product> skyline;
+
+    for (const auto &p : products) {
+        bool dominated = false;
+        for (const auto &q : products) {
+            if (dominates(q, p)) {
+                dominated = true;
+                break;
+            }
+        }
+        if (!dominated) {
+            skyline.push_back(p);
         }
     }
 
-    return shirts;
+    return skyline;
 }
 
-
 int main() {
-    string filename = "ind_1000_2_product.csv";
-    vector<Shirt> shirts = readCSV(filename);
+    auto start = high_resolution_clock::now();
 
-    clock_t start = clock();
-    vector<Shirt> skyline = skylineQuery(shirts);
-    clock_t end = clock();
+    auto retrieval_start = high_resolution_clock::now();
+    vector<Product> products = readProductsFromCSV("ind_1000_2_product.csv");
+    auto retrieval_end = high_resolution_clock::now();
+    double retrieval_time = duration<double>(retrieval_end - retrieval_start).count();
 
-    cout << "Total Items: " << shirts.size() << endl;
-    cout << "Skyline Results (Best Shirts): " << skyline.size() << endl;
-
-    for (const auto& s : skyline) {
-        cout << "Price: " << s.price << ", Review: " << s.review << endl;
+    if (products.empty()) {
+        cerr << "No products loaded. Exiting.\n";
+        return 1;
     }
 
-    double elapsed = (double)(end - start) / CLOCKS_PER_SEC;
-    cout << "\nExecution Time: " << elapsed << " seconds" << endl;
+    auto skyline_start = high_resolution_clock::now();
+    vector<Product> skyline = computeSkyline(products);
+    auto skyline_end = high_resolution_clock::now();
+    double skyline_time = duration<double>(skyline_end - skyline_start).count();
+
+    auto stop = high_resolution_clock::now();
+    double total_time = duration<double>(stop - start).count();
+
+    size_t memory_usage = sizeof(Product) * (products.size() + skyline.size());
+
+    // Output
+    cout << "=== Skyline Products ===\n";
+    for (size_t i = 0; i < skyline.size(); ++i) {
+        cout << i + 1 << ". Product: product-" << skyline[i].id
+             << " | Price: " << skyline[i].price
+             << " | Rating: " << skyline[i].rating << endl;
+    }
+
+    cout << fixed << setprecision(6);
+    cout << "\n=== Performance Measurement ===\n";
+    cout << "Data Retrieval Time: " << retrieval_time << " seconds\n";
+    cout << "Skyline Calculation Time: " << skyline_time << " seconds\n";
+    cout << "Total Execution Time: " << total_time << " seconds\n";
+    cout << "Total Memory Usage: " << memory_usage << " bytes\n";
 
     return 0;
 }
