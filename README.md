@@ -108,17 +108,15 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 ![Screenshot 2025-04-23 235211](https://github.com/user-attachments/assets/cc94feda-8a89-4119-a307-809d717f230f)
 
 ### 2. Analisis Hasil Performa
-| **Fungsi**               | **Best Case** | **Average Case** | **Worst Case** | **Penjelasan**                                                    |
-|--------------------------|---------------|------------------|----------------|-------------------------------------------------------------------|
-| `isNumber()`             | O(L)          | O(L)             | O(L)           | Memeriksa tiap karakter dalam string (L = panjang string).        |
-| `dominates()`            | O(1)          | O(1)             | O(1)           | Membandingkan harga & rating dua produk.                          |
-| Data Retrieval Loop      | O(n)          | O(n)             | O(n)           | Membaca n baris CSV dan enqueue ke `queue`.                      |
-| Skyline Calculation      | O(n)          | O(n log n)       | O(n²)          | • **Best**: banyak produk tereliminasi awal → O(n)                |
-|                          |               |                  |                | • **Average**: skyline tumbuh ~O(log n) → O(n log n)              |
-|                          |               |                  |                | • **Worst**: semua produk bertahan → O(n²) |                      |
-| Highest/Lowest Check     | O(k)          | O(k)             | O(k)           | Pencarian linear di skyline (k = ukuran skyline).                |
-| Print Output             | O(k)          | O(k)             | O(k)           | Mencetak k produk skyline.                                        |
-| **Total Program**        | O(n)          | O(n log n)       | O(n²)          | Akumulasi: O(n) I/O + O(n log n) skyline + O(k) post-processing.  |
+| **Fungsi**               | **Best Case**      | **Average Case**   | **Worst Case**      | **Penjelasan**                                                    |
+|--------------------------|--------------------|--------------------|---------------------|-------------------------------------------------------------------|
+| `isNumber()`             | O(L)               | O(L)               | O(L)                | Memeriksa tiap karakter dalam string untuk memastikan apakah string tersebut berisi angka (L = panjang string). |
+| `dominates()`            | O(1)               | O(1)               | O(1)                | Membandingkan harga dan rating dua produk secara langsung.        |
+| **Data Retrieval Loop**  | O(n)               | O(n)               | O(n)                | Membaca `n` baris dari file CSV dan memasukkan produk ke dalam antrian (`queue`). |
+| **Skyline Calculation**  | O(n)               | O(n log n)         | O(n²)               | **Best**: Banyak produk tereliminasi awal → O(n). <br> **Average**: Skyline tumbuh sekitar logaritmik → O(n log n). <br> **Worst**: Semua produk bertahan → O(n²). |
+| **Highest/Lowest Check** | O(k)               | O(k)               | O(k)                | Pencarian linear untuk menemukan produk dengan rating tertinggi dan harga terendah, di mana `k` adalah ukuran skyline. |
+| **Print Output**         | O(k)               | O(k)               | O(k)                | Menampilkan `k` produk dari skyline.                             |
+| **Total Program**        | O(n)               | O(n log n)         | O(n²)               | Akumulasi: O(n) I/O + O(n log n) skyline + O(k) post-process. |
 
 #### Kelebihan Queue
 - Menambah data (`push`) dan mengambil data (`pop`) sangat cepat.  
