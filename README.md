@@ -116,10 +116,9 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 | `isNumber()`             | O(L)               | O(L)               | O(L)                | Memeriksa tiap karakter dalam string untuk memastikan apakah string tersebut berisi angka (L = panjang string). |
 | `dominates()`            | O(1)               | O(1)               | O(1)                | Membandingkan harga dan rating dua produk secara langsung.        |
 | **Data Retrieval Loop**  | O(n)               | O(n)               | O(n)                | Membaca `n` baris dari file CSV dan memasukkan produk ke dalam antrian (`queue`). |
-| **Skyline Calculation**  | O(n)               | O(n log n)         | O(n²)               | **Best**: Banyak produk tereliminasi awal → O(n). <br> **Average**: Skyline tumbuh sekitar logaritmik → O(n log n). <br> **Worst**: Semua produk bertahan → O(n²). |
-| **Highest/Lowest Check** | O(k)               | O(k)               | O(k)                | Pencarian linear untuk menemukan produk dengan rating tertinggi dan harga terendah, di mana `k` adalah ukuran skyline. |
+| **Skyline Calculation**  | O(n)               | O(n²)              | O(n²)               | **Best**: Banyak produk tereliminasi awal → O(n). <br> **Average**: Skyline tumbuh lebih banyak, tetapi tidak sepenuhnya bertahan → O(n²). <br> **Worst**: Semua produk bertahan → O(n²). |
 | **Print Output**         | O(k)               | O(k)               | O(k)                | Menampilkan `k` produk dari skyline.                             |
-| **Total Program**        | O(n)               | O(n log n)         | O(n²)               | Akumulasi: O(n) I/O + O(n log n) skyline + O(k) post-process. |
+| **Total Program**        | O(n)               | O(n²)              | O(n²)               | Gabungan: O(n) I/O + O(n²) skyline + O(k) post-process. |
 - `n`: jumlah total produk dalam CSV.
 - `k`: jumlah produk dalam hasil skyline (k ≤ n).
 - `L`: panjang karakter dari string (untuk fungsi `isNumber()`).
