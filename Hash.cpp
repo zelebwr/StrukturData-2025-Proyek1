@@ -235,7 +235,7 @@ int main() {
     auto startDataRetrieval = chrono::high_resolution_clock::now(); // Start time for data retrieval
     // local variables
     hashSet skylineSet(1000); 
-    ifstream iFile("./ind_500_2_product.csv");
+    ifstream iFile("./1000_2_product.csv"); // Open the CSV file
         if (!iFile) { // check if the file opened successfully
             cout << "Error opening file" << endl;
             return 1;
