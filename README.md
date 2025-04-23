@@ -53,11 +53,14 @@
 
 ## Map
 ### 1. Hasil Performa
-
+![image](https://github.com/user-attachments/assets/f327da02-a43d-408d-a337-b72cae55ccb0)
 ### 2. Analisis Hasil Performa
-### 3. Screenshot Input Program
-### 4. Screenshot Output Program
 
+
+### 3. Screenshot Input Program
+![image](https://github.com/user-attachments/assets/d2237982-75cd-4816-a78d-f8d8076152e4)
+### 4. Screenshot Output Program
+![image](https://github.com/user-attachments/assets/e2d9df04-fc37-4641-9288-7533cda9d3e2)
 
 
 ## Kesimpulan
