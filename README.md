@@ -18,9 +18,12 @@
 
 ## Linked List
 ### 1. Hasil Performa
+![Screenshot 2025-04-23 210731](https://github.com/user-attachments/assets/e780c871-588b-4199-9fca-83f3b97a876e)
 ### 2. Analisis Hasil Performa
 ### 3. Screenshot Input Program 
+![Screenshot 2025-04-23 210947](https://github.com/user-attachments/assets/8e0e9569-8745-4c1a-9734-cb634ecc430b)
 ### 4. Screenshot Output Program 
+![Screenshot 2025-04-23 210807](https://github.com/user-attachments/assets/a5f7ff3b-6a12-42a6-8e14-e65f307ad56a)
 
 ## Stack
 ### 1. Hasil Performa
