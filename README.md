@@ -256,5 +256,5 @@ Alhasil, dengan pertimbangan semua faktor-faktor di atas dan hasil analisis kami
 1. Stack 
 2. Linked List
 3. Map
-4. <other data structure>
+4. `<other data structure>`
 
