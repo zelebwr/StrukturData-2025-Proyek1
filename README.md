@@ -1,5 +1,5 @@
 # StrukturData-2025-Proyek1
-
+---
 #### Kelompok 4
 
 | No. | Nama                                    | NRP         | Struktur Data |
@@ -11,7 +11,7 @@
 | 5   | Ahmad Rafi Fadhillah Dwiputra           | 5027241068  | Map            |
 | 6   | Mutiara Diva Jaladitha                  | 5027241083  | Linked List    |
 
-
+---
 ## Array
 ### 1. Hasil Performa
 ![output array crop](https://github.com/user-attachments/assets/1f8de5b7-684c-48b6-8563-5d839332b798)
@@ -29,6 +29,7 @@ Dapat dilihat dengan menggunakan struktur data array bahwa penggunaan dapat dibi
 ### 4. Screenshot Output Program 
 ![WhatsApp Image 2025-04-23 at 21 56 48_ff289abc](https://github.com/user-attachments/assets/59f6f5fa-ae2a-4f94-829c-0c62b8448dc0)
 
+---
 ## Linked List
 ### 1. Hasil Performa
 ![Screenshot 2025-04-23 210731](https://github.com/user-attachments/assets/e780c871-588b-4199-9fca-83f3b97a876e)
@@ -80,6 +81,7 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 ### 4. Screenshot Output Program 
 ![Screenshot 2025-04-23 210807](https://github.com/user-attachments/assets/a5f7ff3b-6a12-42a6-8e14-e65f307ad56a)
 
+---
 ## Stack
 ### 1. Hasil Performa
 ![Image](https://github.com/user-attachments/assets/ea7e2a33-1022-467d-a9e2-bb6812a3e926)
@@ -103,6 +105,7 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 ### 4. Screenshot Output Program 
 ![Image](https://github.com/user-attachments/assets/9c64e70e-342d-466c-bfcd-18162644971a)
 
+---
 ## Queue
 ### 1. Hasil Performa
 ![Screenshot 2025-04-23 235211](https://github.com/user-attachments/assets/cc94feda-8a89-4119-a307-809d717f230f)
@@ -138,6 +141,7 @@ ain linear scan via pop.
 ### 4. Screenshot Output Program 
 ![Screenshot 2025-04-23 235211](https://github.com/user-attachments/assets/06f2ec33-8335-423f-a9e5-a27d961ffe01)
 
+---
 ## Hash table
 ### 1. Hasil Performa
 ![image](https://github.com/user-attachments/assets/3680192e-6af1-41af-a554-5eab0dd14173)
@@ -180,7 +184,7 @@ git
 ### 4. Screenshot Output Program 
 ![image](https://github.com/user-attachments/assets/f7600e02-4821-4328-b012-1e6e5ede4c7a)
 
-
+---
 ## Map
 ### 1. Hasil Performa
 ![image](https://github.com/user-attachments/assets/4613daa3-8576-4981-a85c-f554564aaa9c)
@@ -217,7 +221,7 @@ Analisis berikut merinci tahapan-tahapan utama dalam proses skyline query, terma
 ### 4. Screenshot Output Program 
 ![image](https://github.com/user-attachments/assets/5b89d9dd-a83e-4b23-8bfb-82f92f948b9f)
 
-
+---
 ## Kesimpulan
 a. Manakah struktur data yang paling efisien dalam memproses skyline query?
 
