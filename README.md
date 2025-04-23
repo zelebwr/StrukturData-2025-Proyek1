@@ -51,6 +51,7 @@
 Apabila dilihat dari keseluruhan program hashTable, Time Complexity dari program adalah sebagai berikut: 
 
 | Function | Best Case | Worst Case | Average Case | Explanation |
+|---|---|---|---|---|
 | `hashFunction` | O(L) | O(L) | O(L) | `L` is defined as the length of the string that is being hashed upon. |
 | `add` | O(1) | O(n) | O(1) | While in adding a Node in a Hash Table can be O(1), due to the need of *Collision Handling* the worst case maybe O(n) due to the traversal process being done in buckets. Although, the best case scenario, where there are no collisions happening might make that into O(1). |
 | `contains` | O(1) | O(n) | O(1) | Alike with the `add()` function, this function also has the same scenarios. But, where the checker founds out that there is no hash index in the hash table. |
