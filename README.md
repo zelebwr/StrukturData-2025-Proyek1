@@ -12,7 +12,9 @@
 ### 1. Hasil Performa
 ### 2. Analisis Hasil Performa
 ### 3. Screenshot Input Program 
+![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4) 
 ### 4. Screenshot Output Program 
+<img width="371" alt="image" src="https://github.com/user-attachments/assets/b44b5ee6-8200-43dd-ba5c-0e31d9387176" />
 
 ## Linked List
 ### 1. Hasil Performa
@@ -46,3 +48,9 @@
 ### 2. Analisis Hasil Performa
 ### 3. Screenshot Input Program 
 ### 4. Screenshot Output Program 
+
+## Kesimpulan
+(ini pertanyaanya)
+3. Analisis hasil dari performa struktur data. Kaitkan dengan kompleksitas BigO Notation. 
+a. Manakah struktur data yang paling efisien dalam memproses skyline query?  
+b. Mengapa?
