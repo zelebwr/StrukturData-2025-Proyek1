@@ -189,11 +189,9 @@ git
 ---
 ## Map
 ### 1. Hasil Performa
-![image](https://github.com/user-attachments/assets/4613daa3-8576-4981-a85c-f554564aaa9c)
+![image](https://github.com/user-attachments/assets/ae2e673b-b631-4d9f-8776-434aa9c0e807)
 
 ### 2. Analisis Hasil Performa
-#### Analisis Performa *Skyline Query* dengan *Map*
-**Analisis Performa Skyline Query**
 
 Analisis berikut merinci tahapan-tahapan utama dalam proses skyline query, termasuk struktur data yang digunakan dan kompleksitas waktu dan ruang (Big-O):
 
@@ -221,7 +219,7 @@ Analisis berikut merinci tahapan-tahapan utama dalam proses skyline query, terma
 ### 3. Screenshot Input Program 
 ![image](https://github.com/user-attachments/assets/72296618-021c-4989-95f3-4c1ab90cd2e1)
 ### 4. Screenshot Output Program 
-![image](https://github.com/user-attachments/assets/5b89d9dd-a83e-4b23-8bfb-82f92f948b9f)
+![image](https://github.com/user-attachments/assets/7b69f18e-0b70-45f3-93f6-1b5ce6ca65df)
 
 ---
 ## Kesimpulan
