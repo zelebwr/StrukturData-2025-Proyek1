@@ -16,9 +16,9 @@ struct Product {
     double rating;
 };
 
-// Fungsi untuk membaca data dari file CSV dan mengembalikan map produk
-std::map<std::string, Product> readCSV(const std::string& filename) {
-    std::map<std::string, Product> products;
+// Fungsi untuk membaca data dari file CSV dan mengembalikan vector produk
+std::vector<Product> readCSV(const std::string& filename) {
+    std::vector<Product> products;
     std::ifstream file(filename);
     std::string line;
 
@@ -36,7 +36,6 @@ std::map<std::string, Product> readCSV(const std::string& filename) {
         std::string token;
         Product p;
 
-        // Parsing nilai-nilai dari satu baris
         std::getline(ss, p.id, ',');
         std::getline(ss, p.name, ',');
         std::getline(ss, token, ',');
@@ -44,38 +43,38 @@ std::map<std::string, Product> readCSV(const std::string& filename) {
         std::getline(ss, token, ',');
         p.rating = std::stod(token);
 
-        // Menyimpan produk ke dalam map dengan ID sebagai key
-        products[p.id] = p;
+        products.push_back(p);
     }
 
     return products;
 }
 
-// Fungsi untuk melakukan skyline query yang lebih efisien menggunakan std::map
-std::map<std::string, Product> skylineQueryMap(const std::map<std::string, Product>& products) {
-    std::vector<Product> sortedProducts;
+// Fungsi untuk melakukan skyline query menggunakan full std::map, input/output berupa vector
+std::vector<Product> skylineQueryMapOnly(const std::vector<Product>& inputProducts) {
+    std::map<double, std::vector<Product>> priceMap;
 
-    // Salin semua produk dari map ke vector dan urutkan berdasarkan harga (ascending)
-    for (const auto& [id, product] : products) {
-        sortedProducts.push_back(product);
+    for (const Product& p : inputProducts) {
+        priceMap[p.price].push_back(p);
     }
-
-    std::sort(sortedProducts.begin(), sortedProducts.end(), [](const Product& a, const Product& b) {
-        return a.price < b.price; // Urut berdasarkan harga naik
-    });
 
     std::map<std::string, Product> skyline;
     double maxRatingSoFar = -1.0;
 
-    // Hanya simpan produk yang tidak didominasi (rating-nya lebih tinggi dari sebelumnya)
-    for (const auto& p : sortedProducts) {
-        if (p.rating > maxRatingSoFar) {
-            skyline[p.id] = p;
-            maxRatingSoFar = p.rating;
+    for (const auto& [price, productList] : priceMap) {
+        for (const Product& p : productList) {
+            if (p.rating > maxRatingSoFar) {
+                skyline[p.id] = p;
+                maxRatingSoFar = p.rating;
+            }
         }
     }
 
-    return skyline;
+    std::vector<Product> result;
+    for (const auto& [id, p] : skyline) {
+        result.push_back(p);
+    }
+
+    return result;
 }
 
 int main() {
@@ -83,11 +82,11 @@ int main() {
     std::cout << "Masukkan nama file CSV (harus berada dalam folder yang sama): ";
     std::getline(std::cin, filename);
 
-    auto start_total = std::chrono::high_resolution_clock::now(); // Waktu mulai total
+    auto start_total = std::chrono::high_resolution_clock::now();
 
-    auto start_retrieve = std::chrono::high_resolution_clock::now(); // Mulai waktu pengambilan data
-    std::map<std::string, Product> products = readCSV(filename);
-    auto end_retrieve = std::chrono::high_resolution_clock::now(); // Selesai pengambilan data
+    auto start_retrieve = std::chrono::high_resolution_clock::now();
+    std::vector<Product> products = readCSV(filename);
+    auto end_retrieve = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> dataRetrievalTime = end_retrieve - start_retrieve;
 
     if (products.empty()) {
@@ -95,18 +94,17 @@ int main() {
         return 1;
     }
 
-    auto start_price = std::chrono::high_resolution_clock::now(); // Mulai waktu skyline
-    std::map<std::string, Product> bestProductMap = skylineQueryMap(products);
-    auto end_price = std::chrono::high_resolution_clock::now(); // Selesai skyline
+    auto start_price = std::chrono::high_resolution_clock::now();
+    std::vector<Product> skylineProducts = skylineQueryMapOnly(products);
+    auto end_price = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> priceSkylineTime = end_price - start_price;
 
-    auto start_top = std::chrono::high_resolution_clock::now(); // Mulai pencarian produk terbaik
+    auto start_top = std::chrono::high_resolution_clock::now();
 
     const Product* bestRating = nullptr;
     const Product* lowestPrice = nullptr;
 
-    // Cari produk dengan rating tertinggi dan harga terendah dari hasil skyline
-    for (const auto& [id, p] : bestProductMap) {
+    for (const auto& p : skylineProducts) {
         if (!bestRating || p.rating > bestRating->rating) {
             bestRating = &p;
         }
@@ -115,31 +113,27 @@ int main() {
         }
     }
 
-    // Urutkan hasil skyline berdasarkan rating (desc), lalu harga (asc)
-    std::vector<std::pair<std::string, Product>> sortedProducts(bestProductMap.begin(), bestProductMap.end());
-    std::sort(sortedProducts.begin(), sortedProducts.end(), [](const auto& a, const auto& b) {
-        if (a.second.rating == b.second.rating)
-            return a.second.price < b.second.price;
-        return a.second.rating > b.second.rating;
+    std::sort(skylineProducts.begin(), skylineProducts.end(), [](const Product& a, const Product& b) {
+        if (a.rating == b.rating)
+            return a.price < b.price;
+        return a.rating > b.rating;
     });
 
-    auto end_top = std::chrono::high_resolution_clock::now(); // Selesai pencarian terbaik
+    auto end_top = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> topSkylineTime = end_top - start_top;
 
-    auto end_total = std::chrono::high_resolution_clock::now(); // Akhir dari semua proses
+    auto end_total = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> totalTime = end_total - start_total;
 
-    // Tampilkan hasil skyline yang sudah diurutkan
     std::cout << "===============================\n";
     std::cout << " SKYLINE QUERY - PRODUK TERBAIK \n";
     std::cout << "===============================\n\n";
 
-    for (const auto& [id, p] : sortedProducts) {
+    for (const auto& p : skylineProducts) {
         std::cout << "- ID  : " << p.id << "\tNama  : " << p.name
                   << "\tHarga : " << p.price << "\tRating  : " << p.rating << "\n\n";
     }
 
-    // Tampilkan produk terbaik berdasarkan kriteria tertentu
     std::cout << "===============================\n";
     std::cout << " Produk dengan Rating Tertinggi: " << bestRating->name << " (" << bestRating->rating << ")\n";
     std::cout << " Produk dengan Harga Termurah : " << lowestPrice->name << " (" << lowestPrice->price << ")\n";
@@ -147,8 +141,7 @@ int main() {
     std::cout << "Waktu eksekusi skyline query: " << totalTime.count() << " detik\n";
     std::cout << "===============================\n";
 
-    // Estimasi penggunaan memori
-    size_t memoryUsage = sizeof(Product) * bestProductMap.size() + sizeof(std::map<std::string, Product>);
+    size_t memoryUsage = sizeof(Product) * skylineProducts.size() + sizeof(std::map<double, std::vector<Product>>) + sizeof(std::map<std::string, Product>);
     std::cout << "\n=== Performance Measurement ===\n";
     std::cout << std::fixed << std::setprecision(7);
     std::cout << "Data Retrieval Time:             " << dataRetrievalTime.count() << " seconds\n";
