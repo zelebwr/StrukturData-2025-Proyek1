@@ -197,12 +197,13 @@ Analisis berikut merinci tahapan-tahapan utama dalam proses skyline query, terma
 
 | Tahapan                        | Deskripsi                                                                | Struktur Data                         | Time Complexity | Space Complexity          |
 |-------------------------------|--------------------------------------------------------------------------|----------------------------------------|------------------|----------------------------|
-| 1. Membaca CSV (`readCSV`)    | Membaca dan parsing file, menyimpan ke `std::map`                        | `std::map<std::string, Product>`       | O(n)             | O(n)                       |
-| 2. Copy ke Vector             | Menyalin produk dari map ke vector                                       | `std::vector<Product>`                 | O(n)             | O(n)                       |
-| 3. Sort Berdasarkan Harga     | Mengurutkan produk dengan `std::sort` (harga naik)                       | `std::vector<Product>`                 | O(n log n)       | -                          |
-| 4. Skyline Filtering          | Linear scan untuk memilih produk dengan rating tertinggi sejauh ini      | `std::map<std::string, Product>`       | O(n)             | O(k) (hasil skyline)       |
-| 5. Pencarian Produk Terbaik   | Iterasi hasil skyline untuk cari rating tertinggi & harga termurah       | `std::map` atau `vector`               | O(k)             | -                          |
-| 6. Sort Hasil Skyline         | Mengurutkan hasil skyline berdasarkan rating (desc) dan harga (asc)      | `std::vector<pair>`                    | O(k log k)       | O(k)                       |
+| 1. Membaca CSV (`readCSV`)    | Membaca dan parsing file, menyimpan ke vector produk                        | `std::vector<Product>`       | O(n)             | O(n)                       |
+| 2. Mengelompokkan by Harga             | Memasukkan produk ke `map` berdasarkan harga                                       | `std::map<double, std::vector<Product>>`                 | O(n log n)             | O(n)                       |
+| 3. Skyline Filtering     | Linear scan dari harga termurah → memilih rating tertinggi sejauh ini                       | `std::map<std::string, Product>`                 | `O(n log k)`       | `O(k) (hasil skyline) `                         |
+| 4. Copy hasil ke vector          | Menyalin hasil skyline ke vector      | `std::map<std::string, Product>`       | `O(k)`             | `O(k)`       |
+| 5. Cari Produk Terbaik   | Iterasi hasil skyline untuk cari rating tertinggi & harga termurah       | `std::vector<Product>`               | `O(k)`             | `O(k)`                          |
+| 6. Sortir Hasil Skyline         | Mengurutkan hasil skyline berdasarkan rating (desc) dan harga (asc)      | `std::vector<Product>`                    | `O(k log k)`       | `O(k)`                       |
+| 7. Output + Cetak Statistik     | Menampilkan hasil, performa, dan memory usage      |  `std::cout / variabel biasa` |  `O(k)`    | -     |
 
 **Total (Dominasi Kompleksitas Waktu)**
 
