@@ -29,6 +29,42 @@ Dapat dilihat dengan menggunakan struktur data array bahwa penggunaan dapat dibi
 ### 4. Screenshot Output Program 
 ![WhatsApp Image 2025-04-23 at 21 56 48_ff289abc](https://github.com/user-attachments/assets/59f6f5fa-ae2a-4f94-829c-0c62b8448dc0)
 
+### Bagaimana cara kerja struktur data jika dikaitkan dengan Skyline problem?
+
+Di code ini menggunakan vector (std::vector dari STL) sebagai pengganti array statis.
+Fungsi vector:
+Menyimpan daftar produk yang di-load dari CSV
+Menyimpan hasil produk skyline
+Tanpa batasan ukuran tetap seperti array, karena vector bisa growable (dinamis)
+
+Vector di sini berperan sebagai:
+Tempat penyimpanan dinamis untuk produk (vector<Product> products)
+Tempat hasil skyline (vector<Product> skyline)
+
+
+Kenapa tidak menggunakan full Array (Array Statis)?
+
+Ukuran harus ditentukan di awal
+Di array statis:
+Ukurannya harus ditentukan fix waktu compile (MAX_PRODUCTS misalnya)
+Overflow, kalau ternyata data di CSV lebih dari itu
+Wasting Memory, kalau data jauh lebih sedikit 
+
+Sedangkan vector bisa menyesuaikan:
+Tambah elemen sesuka hati dengan push_back()
+Tidak perlu menentukan berapa banyak data yang bakal dimuat
+
+Tidak scalable
+Jika ada perubahan data dari 1.000 menjadi 500 
+Array statis harus di ubah manual ukuran MAX_PRODUCTS
+Rawan lupa atau salah hitung
+
+Dengan vector:
+Ukuran bisa otomatis menyesuaikan saat push_back() dipanggil
+Lebih aman dan maintainable
+
+
+
 ---
 ## Linked List
 ### 1. Hasil Performa
