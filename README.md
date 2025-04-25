@@ -178,6 +178,32 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 ![Image](https://github.com/user-attachments/assets/9c64e70e-342d-466c-bfcd-18162644971a)
 
 ---
+
+Cara kerjanya seperti ini:
+Setelah semua titik di-sort berdasarkan harga naik dan rating turun, kita iterasi satu per satu.
+Untuk setiap titik baru p, kita cek elemen puncak stack:
+- Jika p mendominasi elemen di puncak stack, kita pop karena artinya elemen lama itu bukan skyline lagi.
+- Jika p didominasi, kita skip.
+- Jika tidak saling mendominasi, kita push(p) ke dalam stack.
+Akhirnya, stack berisi titik-titik skyline dalam urutan menaik sesuai harga.
+
+Performa:
+Performa struktur stack dalam skyline query cukup efisien:
+Waktu sort: O(n log n) (karena pakai std::sort)
+Waktu skyline dengan stack: Amortized O(n)
+
+Artinya, setiap titik hanya bisa masuk dan keluar stack maksimal satu kali. Tidak ada perulangan bersarang seperti di brute-force O(n²). Ini menjadikan total proses lebih cepat.
+
+Mengapa Struktur data tersebut cepat / lambat memproses Skyline Query?
+Kenapa cepat:
+- Stack berbasis linked-list memungkinkan kita untuk melakukan push, pop, dan peek dalam O(1) waktu.
+- Setelah data di-sort, kita hanya perlu satu kali loop melalui semua titik.
+- Karena pendekatannya greedy, stack hanya menyimpan titik-titik yang memang belum terdominasi, ini menghindari perbandingan ganda seperti di nested loop.
+
+Tapi ada kekurangan juga:
+- Struktur stack tidak cocok untuk lebih dari 2 atribut. Kalau kita ingin skyline dengan 3 atau 4 dimensi (misalnya harga, rating, kualitas, dan garansi), pendekatan ini tidak langsung bisa dipakai.
+- Karena menggunakan new/delete untuk tiap node, stack berbasis linked-list sedikit lebih berat daripada array biasa dalam hal alokasi memori dan efisiensi cache.
+
 ## Queue
 ### 1. Hasil Performa
 <img width="436" alt="image" src="https://github.com/user-attachments/assets/86674a02-bcfa-4304-8710-0177c8e9a3c2" />
