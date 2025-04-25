@@ -33,50 +33,45 @@ Dapat dilihat dengan menggunakan struktur data array bahwa penggunaan dapat dibi
 
 Di code ini menggunakan vector (std::vector dari STL) sebagai pengganti array statis.
 Fungsi vector:
-Menyimpan daftar produk yang di-load dari CSV
-Menyimpan hasil produk skyline
-Tanpa batasan ukuran tetap seperti array, karena vector bisa growable (dinamis)
+- Menyimpan daftar produk yang di-load dari CSV
+- Menyimpan hasil produk skyline
+- Tanpa batasan ukuran tetap seperti array, karena vector bisa growable (dinamis)
 
 Vector di sini berperan sebagai:
-Tempat penyimpanan dinamis untuk produk (vector<Product> products)
-Tempat hasil skyline (vector<Product> skyline)
+- Tempat penyimpanan dinamis untuk produk (vector<Product> products)
+- Tempat hasil skyline (vector<Product> skyline)
 
 
 Kenapa tidak menggunakan full Array (Array Statis)?
 
 Ukuran harus ditentukan di awal
 Di array statis:
-Ukurannya harus ditentukan fix waktu compile (MAX_PRODUCTS misalnya)
-Overflow, kalau ternyata data di CSV lebih dari itu
-Wasting Memory, kalau data jauh lebih sedikit 
+- Ukurannya harus ditentukan fix waktu compile (MAX_PRODUCTS misalnya)
+- Overflow, kalau ternyata data di CSV lebih dari itu
+- Wasting Memory, kalau data jauh lebih sedikit 
+- Tidak scalable: Jika ada perubahan data dari 1.000 menjadi 500, array statis harus di ubah manual ukuran MAX_PRODUCTS
+- Rawan lupa atau salah hitung
 
 Sedangkan vector bisa menyesuaikan:
-Tambah elemen sesuka hati dengan push_back()
-Tidak perlu menentukan berapa banyak data yang bakal dimuat
-
-Tidak scalable
-Jika ada perubahan data dari 1.000 menjadi 500 
-Array statis harus di ubah manual ukuran MAX_PRODUCTS
-Rawan lupa atau salah hitung
-
-Dengan vector:
-Ukuran bisa otomatis menyesuaikan saat push_back() dipanggil
-Lebih aman dan maintainable
+- Menambah elemen sesuka hati dengan push_back()
+- Tidak perlu menentukan berapa banyak data yang bakal dimuat
+- Ukuran bisa otomatis menyesuaikan saat push_back() dipanggil
+- Lebih aman dan maintainable
 
 ### Performa
 
 Kompleksitas waktu:
 Skyline calculation tetap O(n²)
       Karena prosesnya masih:
-Loop outer for (const auto &p : products)
-Loop inner for (const auto &q : products)
+- Loop outer for (const auto &p : products)
+- Loop inner for (const auto &q : products)
 Cek dominates(q, p)
 
 Kompleksitas memori:
 O(n) karena vector menyimpan data produk + hasil skyline
      Bedanya:
-vector ukurannya dinamis
-Lebih efisien memory kalau jumlah produk bervariasi
+- vector ukurannya dinamis
+- Lebih efisien memory kalau jumlah produk bervariasi
 
 Waktu akses elemen vector juga O(1) seperti array.
 Tapi karena ada dynamic resizing saat push_back(), ada overhead sedikit. (meskipun amortized O(1)).
@@ -355,12 +350,16 @@ Analisis berikut merinci tahapan-tahapan utama dalam proses skyline query, terma
 - **Time Complexity Total**: `O(n log n)`
 - **Space Complexity Total**: `O(n)`
 
----
-
 **Keterangan:**
 
-- `n` = jumlah total produk dalam dataset
-- `k` = jumlah hasil dari skyline query (biasanya jauh lebih kecil dari `n`)
+- `n` = jumlah seluruh produk dalam file CSV
+- `k` = jumlah produk hasil dari skyline query (k ≤ n)
+
+Secara ringkas, analisis pada hasil performa struktur data Map dalam pemrosesan Skyline Query terbilang efisien dan cepat, ini dikarenakan berbagai faktor seperti:
+1. std::map menjaga urutan harga
+Dengan struktur Map yang melakukan iterasi proses SQ secara otomatis pada <vector> produk yang telah diurutkan pada harga termurah ke mahal, proses SQ tidak memerlukan sortir manual secara eksplisit dan memiliki akses dan insert secara efisien pada datanya `(O(n log n))`.
+2. Tidak perlu membandingkan antar produk langsung `(O(n²))`
+Karena produk diurutkan berdasarkan harga, cukup bandingkan rating terhadap maxRatingSoFar, sehingga memangkas komparasi yang tidak diperlukan antar produk yang sudah jelas kalah secara harga dan rating.
 
 ### 3. Screenshot Input Program 
 ![image](https://github.com/user-attachments/assets/72296618-021c-4989-95f3-4c1ab90cd2e1)
@@ -391,16 +390,18 @@ Hal ini bisa terjadi disebabkan beberapa faktor, yaitu:
 Secara teoritis, dengan dataset yang terkontrol dan operasi program yang sudah diefisienkan, hasil struktur data yang paling optimal seharusnya merupakan Array dan Map disebabkan kemampuan struktur data mereka yang melakukan proses akses data yang cepat, dengan kondisi tertentu yang harus ditemui. Tetapi untuk sekarang ini hasil kami berbeda dengan hasil tersebut. Hal ini dapat terjadi karena berbagai faktor seperti: 
 
 ### 1. Kontrol Efisiensi yang berbeda-beda tiap program
-Dengan perbedaan akan kemampuan dan pemahaman tiap developer program, maka hasil dari efisiensi program sendiri berbeda-beda dan hasil dari ini dapat menyebabkan efisiensi programn juga beragam dengan standar yang berbeda-beda. Dengan tanpa adanya kontrol kualitas/efisiensi program satu dengan program yang lainnya dapat menghasilkan hasil performa yang berbeda dan, mungkin, kurang akurat. 
+Dengan perbedaan akan kemampuan dan pemahaman tiap developer program, maka hasil dari **efisiensi program sendiri berbeda-beda** dan **hasil dari ini dapat menyebabkan efisiensi programn juga beragam dengan standar yang berbeda-beda**. Dengan tanpa adanya kontrol kualitas/efisiensi program satu dengan program yang lainnya dapat menghasilkan hasil performa yang berbeda dan, mungkin, kurang akurat.
 
 ### 2. Implementasi Algoritma dan Library yang berbeda
-Ragam algoritma dan library yang ada dan sudah disediakan oleh C++ sendiri terdapat banyak dan berbeda-beda kegunaannya. Ada beberapa dari kami sendiri yang menggunakan library yang terkhususkan untuk suatu struktur data dan ada juga yang tanpa menggunakan library terkhususkan jika tidak harus. Ada juga yang menggunakan logika pemrograman/algoritma yang berbeda dengan satu sama lain, menyebabkan program satu sama lain memiliki perbedaan dalam efisiensi. Dengan menambahkan function `sort()` ada kemungkinan terjadi suatu proses di luar dugaan yang membuat efisiensi program meningkat. Ada juga kasus di mana suatu implementasi algoritma lain yang mungkin dapat menurunkan efisiensi program. 
+Ragam algoritma dan library yang ada dan sudah disediakan oleh C++ sendiri terdapat banyak dan berbeda-beda kegunaannya. Ada beberapa dari kami sendiri yang menggunakan library yang terkhususkan untuk suatu struktur data dan ada juga yang tanpa menggunakan library terkhususkan jika tidak harus. Ada juga yang menggunakan logika pemrograman/algoritma yang berbeda dengan satu sama lain, menyebabkan program satu sama lain memiliki perbedaan dalam efisiensi. Dengan menambahkan function `sort()` ada kemungkinan terjadi suatu proses di luar dugaan yang membuat efisiensi program meningkat. Ada juga kasus di mana suatu implementasi algoritma lain yang mungkin dapat menurunkan efisiensi program. **Dengan kesimpulan, implementasi algoritma dengan cara logika pemograman yang berbeda-beda pada setiap masing-masing struktur data memberikan hasil output yang berbeda terutama dalam efisiensi-nya**.
 
 ### 3. Fokus Manfaat Struktur Data yang bebeda
-Tiap struktur data sendiri memiliki fokus manfaat tersendiri. Mereka memiliki situasi yang dikhususkan untuk mereka sendiri agar dapat menyelesaikan suatu permasalahan dalam situasi tersebut dengan cara yang paling mudah dan paling efisien. Dengan begitu dengan fokus yang berbeda-beda, pastinya performa tiap struktur data dalam operasi skyline query sendiri dapat berbeda-beda. Tiap struktur data memiliki kegunaan masing-masing, dan memiliki dataset mereka sendiri dimana mereka mungkin lebih handal dibandingkan dengan yang lainnya. Seperti Array lebih efisien untuk mengolah dataset yang lebih kecil (karena memori yang diambil map berlebihan) dibandingkan dengan Map ketika melakukan skyline query, dan juga sebaliknya map lebih efisien dibandingkan array di saat melakukan skyline query dengan dataset yang lebih besar.
+Tiap struktur data sendiri memiliki fokus manfaat tersendiri. Mereka memiliki situasi yang dikhususkan untuk mereka sendiri agar dapat menyelesaikan suatu permasalahan dalam situasi tersebut dengan cara yang paling mudah dan paling efisien. **Dengan begitu dengan fokus yang berbeda-beda, pastinya performa tiap struktur data dalam operasi skyline query sendiri dapat berbeda-beda**. Tiap struktur data memiliki kegunaan masing-masing, dan memiliki dataset mereka sendiri dimana mereka mungkin lebih handal dibandingkan dengan yang lainnya. Seperti Array lebih efisien untuk mengolah dataset yang lebih kecil (karena memori yang diambil map berlebihan) dibandingkan dengan Map ketika melakukan skyline query, dan juga sebaliknya map lebih efisien dibandingkan array di saat melakukan skyline query dengan dataset yang lebih besar.
+
 
 ### 4. Alur dan Jumlah Operasi yang berbeda
-Alur dan Jumlah Operasi yang berbeda merupakan salah satu faktor utama di saat membandingkan performa dari suatu program dengan program yang lainnya. Ketika alur dari program A dengan program B berbeda, terdapat sebuah proses redundansi sendiri-sendiri yang dapat mengurangi performa dari program. Seperti perbedaan dari alur, jumlah operasi yang dimiliki program sendiri juga berpengaruh pada performa dari program. Kembali lagi kepada efisiensi dari program, apabila program satu dengan program yang lainnya memiliki satu operasi yang sama tetapi satu dilakukan dengan cara yang berbeda, hal ini berpengaruh pada operasi. 
+**Alur dan Jumlah Operasi yang berbeda merupakan salah satu faktor utama di saat membandingkan performa dari suatu program dengan program yang lainnya**. Ketika alur dari program A dengan program B berbeda, terdapat sebuah proses redundansi sendiri-sendiri yang dapat mengurangi performa dari program. Seperti perbedaan dari alur, jumlah operasi yang dimiliki program sendiri juga berpengaruh pada performa dari program. Kembali lagi kepada efisiensi dari program, apabila program satu dengan program yang lainnya memiliki satu operasi yang sama tetapi satu dilakukan dengan cara yang berbeda, hal ini berpengaruh pada operasi.
+ 
 ---
 
 Mungkin, selain dari faktor-faktor di atas, mungkin dapat dilihat lebih detail melalui time complexity yang sudah dijelaskan sebelumnya pada penjelasana analisis data di atas. Apabila dilihat dari time complexity stack, linked list, dan map, mereka memiliki time complexity yang lebih baik dibandingkan yang lain. Dengan begitu performa mereka juga selayaknya lebih tinggi dibandingkan dengan performa program yang lainnya. 
