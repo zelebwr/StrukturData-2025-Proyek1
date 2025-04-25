@@ -143,7 +143,7 @@ Cepat Saat
 - Produk-produk tidak saling mendominasi banyak >> skyline-nya kecil.
 - Operasi dominasi (dominates(...)) cukup ringan karena hanya membandingkan 2 atribut.
 
-Lambat Saat:
+Lambat Saat
 - Ukuran input sangat besar (100K+) >> O(n²) dalam kasus terburuk.
 - Banyak produk yang hampir tidak terdominasi >> skyline membengkak >> perbandingan antar banyak elemen jadi berat.
 
@@ -169,12 +169,19 @@ Vector tidak efisien saat banyak insert/erase di tengah karena menyebabkan shift
 
 #### Kenapa Queue Cocok untuk Masalah Skyline?
 1. **Urutan Terjaga (FIFO)**
+   
 Queue memproses data dalam urutan yang sama seperti di file CSV, sehingga tidak ada data yang di-skip atau diulang. Hal ini penting untuk memastikan semua produk dinilai secara adil dalam urutan yang konsisten.
+
 2. **Proses Satu Arah**
+
  Karena skyline query hanya memerlukan satu kali pemrosesan untuk setiap produk (tidak perlu backtracking atau traversal bolak-balik), maka queue sangat cocok karena hanya menyediakan akses dari depan ke belakang.
+ 
 3. **Efisiensi Memori dan Waktu**
+
 Queue tidak perlu struktur pencarian atau indexing tambahan. Operasi .push(), .front(), dan .pop() semua berjalan dalam waktu konstan (O(1)), yang membuatnya efisien untuk pemrosesan data berukuran besar.
+
 4. **Kesederhanaan Implementasi**
+
 Dengan queue, alur logika lebih mudah dipahami dan tidak perlu manajemen memori yang kompleks seperti pada linked list atau struktur data lainnya.
 
 ### 3. Screenshot Input Program 
