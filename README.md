@@ -63,7 +63,43 @@ Dengan vector:
 Ukuran bisa otomatis menyesuaikan saat push_back() dipanggil
 Lebih aman dan maintainable
 
+### Performa
 
+Kompleksitas waktu:
+Skyline calculation tetap O(n²)
+      Karena prosesnya masih:
+Loop outer for (const auto &p : products)
+Loop inner for (const auto &q : products)
+Cek dominates(q, p)
+
+Kompleksitas memori:
+O(n) karena vector menyimpan data produk + hasil skyline
+     Bedanya:
+vector ukurannya dinamis
+Lebih efisien memory kalau jumlah produk bervariasi
+
+Waktu akses elemen vector juga O(1) seperti array.
+Tapi karena ada dynamic resizing saat push_back(), ada overhead sedikit. (meskipun amortized O(1)).
+
+### Mengapa struktur data cepat / lambat dalam memproses skyline query
+
+Jumlah Perbandingan
+Skyline query itu by nature O(n²) kalau brute force, karena:
+Setiap data dibandingkan dengan semua data lain.
+Artinya:
+Kalau data 1000 → 1000×1000 = 1.000.000 perbandingan.
+Kalau data 10.000 → 100 juta perbandingan.
+Jadi semakin banyak data → prosesnya kuadrat makin berat.
+
+Efisiensi Struktur Data
+Vector:
+Dinamis, fleksibel.
+Tapi kalau tetap brute force loop bersarang, tetap O(n²).
+Vector cepat buat akses elemen O(1) tapi looping tetap berat kalau datanya banyak.
+Array:
+Akses juga O(1).
+Tapi harus hati-hati ukuran, tidak bisa fleksibel.
+Proses brute force-nya sama beratnya.
 
 ---
 ## Linked List
