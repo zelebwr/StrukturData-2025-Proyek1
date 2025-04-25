@@ -123,12 +123,40 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 - `k`: jumlah produk dalam hasil skyline (k ≤ n).
 - `L`: panjang karakter dari string (untuk fungsi `isNumber()`).
 
+#### Bagaimana cara kerja struktur data jika dikaitkan dengan Skyline problem? 
+Skyline problem adalah tentang memilih item (produk) yang tidak didominasi oleh item lain dalam satu set data. Dalam hal ini, item dideskripsikan dengan dua atribut utama, yaitu price dan rating.
+Produk A mendominasi produk B jika:
+- Harga A lebih murah atau sama dengan B
+- Rating A lebih tinggi atau sama dengan B
+- Dan setidaknya satu dari kondisi tersebut lebih baik secara ketat
+
+Struktur data queue digunakan sebagai tempat penampungan sementara seluruh data produk yang diambil dari file CSV. Setiap baris data (produk) yang valid akan dimasukkan ke dalam queue, lalu diproses satu per satu untuk menentukan apakah produk tersebut masuk ke dalam skyline set atau tidak.
+
+Kenapa Cocok untuk Skyline?
+- Queue menjamin urutan >> Produk diproses sesuai urutan muncul di file CSV.
+- Efisien untuk satu arah >> Tidak butuh pencarian acak atau pengulangan data.
+- Minim overhead >> Queue tidak membutuhkan banyak manajemen memori atau indexing.
+
+#### Mengapa struktur data tsb cepat / lambat dalam memproses skyline query?
+Cepat Saat
+- Data input tidak terlalu besar (misalnya ≤ 10.000 produk).
+- Produk-produk tidak saling mendominasi banyak >> skyline-nya kecil.
+- Operasi dominasi (dominates(...)) cukup ringan karena hanya membandingkan 2 atribut.
+
+Lambat Saat:
+- Ukuran input sangat besar (100K+) >> O(n²) dalam kasus terburuk.
+- Banyak produk yang hampir tidak terdominasi >> skyline membengkak >> perbandingan antar banyak elemen jadi berat.
+
 #### Kelebihan Queue
 - Menambah data (`push`) dan mengambil data (`pop`) sangat cepat.  
 - Data diproses sesuai urutan datang (First-In, First-Out), jadi mudah dipahami.  
 - Pakai `std::queue` langsung bisa, tanpa harus ngatur pointer atau memori manual.  
 - Akses memori cukup berurutan, membantu kinerja.  
 - Struktur ringan, tidak ada penyeimbangan atau overhead tambahan.
+#### Kelebihan Vector
+- Akses elemen cepat (O(1) untuk indeks langsung).
+- Iterasi efisien untuk jumlah data yang tidak terlalu besar.
+- Sangat fleksibel untuk modifikasi seperti insert/erase di akhir.
 
 #### Kelemahan Queue
 - Hanya bisa ambil data di depan atau belakang, tidak bisa langsung mengakses elemen di tengah.  
@@ -136,6 +164,18 @@ Namun, karena kondisi dominasi memfilter elemen, inner loop sering lebih pendek 
 - Kalau butuh cari data tertentu, harus cek satu per satu secara berurutan.  
 - Kurang pas untuk operasi yang membutuhkan akses acak atau query kompleks.
 ain linear scan via pop.
+#### Kelemahan Vector
+Vector tidak efisien saat banyak insert/erase di tengah karena menyebabkan shift elemen — hal ini terjadi dalam skyline.swap(tmp) saat banyak produk harus dihapus.
+
+#### Kenapa Queue Cocok untuk Masalah Skyline?
+1. **Urutan Terjaga (FIFO)**
+Queue memproses data dalam urutan yang sama seperti di file CSV, sehingga tidak ada data yang di-skip atau diulang. Hal ini penting untuk memastikan semua produk dinilai secara adil dalam urutan yang konsisten.
+2. **Proses Satu Arah**
+ Karena skyline query hanya memerlukan satu kali pemrosesan untuk setiap produk (tidak perlu backtracking atau traversal bolak-balik), maka queue sangat cocok karena hanya menyediakan akses dari depan ke belakang.
+3. **Efisiensi Memori dan Waktu**
+Queue tidak perlu struktur pencarian atau indexing tambahan. Operasi .push(), .front(), dan .pop() semua berjalan dalam waktu konstan (O(1)), yang membuatnya efisien untuk pemrosesan data berukuran besar.
+4. **Kesederhanaan Implementasi**
+Dengan queue, alur logika lebih mudah dipahami dan tidak perlu manajemen memori yang kompleks seperti pada linked list atau struktur data lainnya.
 
 ### 3. Screenshot Input Program 
 ![Screenshot 2025-04-23 191550](https://github.com/user-attachments/assets/bae5186c-60f3-4e0c-9629-d6bf30889bd4)
