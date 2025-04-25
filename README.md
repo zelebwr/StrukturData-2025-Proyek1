@@ -31,7 +31,7 @@ Dapat dilihat dengan menggunakan struktur data array bahwa penggunaan dapat dibi
 
 ### Bagaimana cara kerja struktur data jika dikaitkan dengan Skyline problem?
 
-Di code ini menggunakan vector (std::vector dari STL) sebagai pengganti array statis.
+**Di code ini menggunakan vector (std::vector dari STL) sebagai pengganti array statis.**
 Fungsi vector:
 - Menyimpan daftar produk yang di-load dari CSV
 - Menyimpan hasil produk skyline
@@ -42,7 +42,7 @@ Vector di sini berperan sebagai:
 - Tempat hasil skyline (vector<Product> skyline)
 
 
-Kenapa tidak menggunakan full Array (Array Statis)?
+**Kenapa tidak menggunakan full Array (Array Statis)?**
 
 Ukuran harus ditentukan di awal
 Di array statis:
