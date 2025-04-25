@@ -270,6 +270,12 @@ Analisis berikut merinci tahapan-tahapan utama dalam proses skyline query, terma
 ![image](https://github.com/user-attachments/assets/7b69f18e-0b70-45f3-93f6-1b5ce6ca65df)
 
 ---
+## Perbandingan Waktu Komputasi Masing-masing Struktur Data
+|Functional Process|Array|Linked List|Stack|Queue|Hash Table|Map|
+|---|---|---|---|---|---|---|
+|Data Retrieval|`O(n)`|`O(n)`|`O(n)`|`O(n)`|`O(n)`|`O(n)`|
+|Skyline Calculation|`O(n²)`|`O(n²)`|`O(n)`|`O(n²)`|`O(n²)`|`O(n log n)`|
+
 ## Kesimpulan
 
 Jadi dari hasil program-program kami, struktur yang programnya tercepat adalah: 
@@ -281,6 +287,8 @@ Hal ini bisa terjadi disebabkan beberapa faktor, yaitu:
 1. Performa perangkat dari masing-masing penguji program
 2. Besar Dataset
 3. Efisiensi program yang telah dibuat oleh para Developer program
+
+
 
 Secara teoritis, dengan dataset yang terkontrol dan operasi program yang sudah diefisienkan, hasil struktur data yang paling optimal seharusnya merupakan Array dan Map disebabkan kemampuan struktur data mereka yang melakukan proses akses data yang cepat, dengan kondisi tertentu yang harus ditemui. Tetapi untuk sekarang ini hasil kami berbeda dengan hasil tersebut. Hal ini dapat terjadi karena berbagai faktor seperti: 
 
@@ -295,8 +303,9 @@ Tiap struktur data sendiri memiliki fokus manfaat tersendiri. Mereka memiliki si
 
 ### 4. Alur dan Jumlah Operasi yang berbeda
 Alur dan Jumlah Operasi yang berbeda merupakan salah satu faktor utama di saat membandingkan performa dari suatu program dengan program yang lainnya. Ketika alur dari program A dengan program B berbeda, terdapat sebuah proses redundansi sendiri-sendiri yang dapat mengurangi performa dari program. Seperti perbedaan dari alur, jumlah operasi yang dimiliki program sendiri juga berpengaruh pada performa dari program. Kembali lagi kepada efisiensi dari program, apabila program satu dengan program yang lainnya memiliki satu operasi yang sama tetapi satu dilakukan dengan cara yang berbeda, hal ini berpengaruh pada operasi. 
+---
 
-Mungkin, selain dari faktor-fakotr di atas, mungkin dapat dilihat lebih detail melalui time complexity yang sudah dijelaskan sebelumnya pada penjelasana analisis data di atas. Apabila dilihat dari time complexity stack, linked list, dan map, mereka memiliki time complexity yang lebih baik dibandingkan yang lain. Dengan begitu performa mereka juga selayaknya lebih tinggi dibandingkan dengan performa program yang lainnya. 
+Mungkin, selain dari faktor-faktor di atas, mungkin dapat dilihat lebih detail melalui time complexity yang sudah dijelaskan sebelumnya pada penjelasana analisis data di atas. Apabila dilihat dari time complexity stack, linked list, dan map, mereka memiliki time complexity yang lebih baik dibandingkan yang lain. Dengan begitu performa mereka juga selayaknya lebih tinggi dibandingkan dengan performa program yang lainnya. 
 
 Alhasil, dengan pertimbangan semua faktor-faktor di atas dan hasil analisis kami semua untuk tiap struktur data, maka untuk struktur data paling efisen adalah: 
 1. Stack 
